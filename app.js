@@ -1649,31 +1649,43 @@ async function shareAssessment() {
 }
 
 function answerQuiz(optionIndex) {
+  if (quizLocked) return;
   const question = quizQuestions[quizIndex];
   const option = question?.options[Number(optionIndex)];
   if (!question || !option) return;
+  const optionMeta = getQuizOptionMeta(option.value);
+  const selectedButton = quizOptions.querySelector(`[data-quiz-option="${Number(optionIndex)}"]`);
 
-  quizScores[question.dimension] = (quizScores[question.dimension] || 0) + option.score;
-  quizAnswers.push({
-    questionId: question.id,
-    dimension: question.dimension,
-    value: option.value,
-    score: option.score
-  });
+  quizLocked = true;
+  quizOptions.classList.add("is-locked");
+  selectedButton?.classList.add("is-selected");
+  quizReaction.textContent = `${optionMeta.reaction}：${option.hint}`;
+  quizReaction.dataset.tone = option.value;
+  quizReaction.classList.add("is-visible");
 
-  if (quizIndex < quizQuestions.length - 1) {
-    quizIndex += 1;
-    renderQuiz();
-    return;
-  }
+  window.setTimeout(() => {
+    quizScores[question.dimension] = (quizScores[question.dimension] || 0) + option.score;
+    quizAnswers.push({
+      questionId: question.id,
+      dimension: question.dimension,
+      value: option.value,
+      score: option.score
+    });
 
-  assessmentResult = calculateAssessment();
-  applyAssessmentResult();
-  renderAssessment();
-  currentDungeon = buildDungeon();
-  renderDungeon();
-  renderLevel();
-  showScreen("assessmentScreen");
+    if (quizIndex < quizQuestions.length - 1) {
+      quizIndex += 1;
+      renderQuiz();
+      return;
+    }
+
+    assessmentResult = calculateAssessment();
+    applyAssessmentResult();
+    renderAssessment();
+    currentDungeon = buildDungeon();
+    renderDungeon();
+    renderLevel();
+    showScreen("assessmentScreen");
+  }, 420);
 }
 
 function renderControls() {
