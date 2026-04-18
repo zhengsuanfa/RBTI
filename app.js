@@ -1276,6 +1276,7 @@ let quizIndex = 0;
 let quizScores = {};
 let quizAnswers = [];
 let quizLocked = false;
+let quizAdvanceTimer = null;
 let assessmentResult = null;
 let currentDungeon = null;
 let currentLevelIndex = 0;
@@ -1294,6 +1295,7 @@ const $ = (id) => document.getElementById(id);
 const appShell = document.querySelector(".app-shell");
 const screens = Array.from(document.querySelectorAll(".screen"));
 const startButton = $("startButton");
+const quizBackButton = $("quizBackButton");
 const quizProgress = $("quizProgress");
 const quizProgressBar = $("quizProgressBar");
 const quizScanDots = $("quizScanDots");
@@ -1452,12 +1454,38 @@ function getQuizOptionMeta(value) {
 }
 
 function resetQuiz() {
+  window.clearTimeout(quizAdvanceTimer);
+  quizAdvanceTimer = null;
   quizIndex = 0;
   quizScores = {};
   quizQuestions.forEach((question) => {
     quizScores[question.dimension] = 0;
   });
   quizAnswers = [];
+  quizLocked = false;
+  assessmentResult = null;
+  selectedChallengeMbti = null;
+  renderQuiz();
+}
+
+function undoLastQuizAnswer() {
+  const lastAnswer = quizAnswers.pop();
+  if (!lastAnswer) return;
+  quizScores[lastAnswer.dimension] = Math.max(0, (quizScores[lastAnswer.dimension] || 0) - lastAnswer.score);
+}
+
+function goPreviousQuizQuestion() {
+  window.clearTimeout(quizAdvanceTimer);
+  quizAdvanceTimer = null;
+
+  if (quizIndex === 0) {
+    quizLocked = false;
+    showScreen("profileScreen");
+    return;
+  }
+
+  undoLastQuizAnswer();
+  quizIndex -= 1;
   quizLocked = false;
   assessmentResult = null;
   selectedChallengeMbti = null;
@@ -1651,6 +1679,7 @@ async function shareAssessment() {
 
 function answerQuiz(optionIndex) {
   if (quizLocked) return;
+  window.clearTimeout(quizAdvanceTimer);
   const question = quizQuestions[quizIndex];
   const option = question?.options[Number(optionIndex)];
   if (!question || !option) return;
@@ -1664,7 +1693,8 @@ function answerQuiz(optionIndex) {
   quizReaction.dataset.tone = option.value;
   quizReaction.classList.add("is-visible");
 
-  window.setTimeout(() => {
+  quizAdvanceTimer = window.setTimeout(() => {
+    quizAdvanceTimer = null;
     quizScores[question.dimension] = (quizScores[question.dimension] || 0) + option.score;
     quizAnswers.push({
       questionId: question.id,
@@ -2048,6 +2078,8 @@ quizOptions.addEventListener("click", (event) => {
   if (!button) return;
   answerQuiz(button.dataset.quizOption);
 });
+
+quizBackButton.addEventListener("click", goPreviousQuizQuestion);
 
 document.addEventListener("click", (event) => {
   const navButton = event.target.closest("[data-screen]");
