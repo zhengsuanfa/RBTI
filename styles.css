@@ -2010,31 +2010,35 @@ blockquote {
 @media (min-width: 960px) {
   body {
     display: block;
-    padding: 24px;
+    padding: 22px 28px;
     overflow-x: hidden;
   }
 
   .desktop-layout {
-    min-height: calc(100vh - 48px);
-    max-width: 1180px;
+    min-height: calc(100vh - 44px);
+    max-width: 1260px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 430px minmax(360px, 440px);
-    justify-content: center;
-    align-items: center;
-    gap: clamp(32px, 5.5vw, 76px);
+    grid-template-columns: 430px minmax(420px, 680px);
+    justify-content: space-between;
+    align-items: start;
+    gap: clamp(28px, 4.4vw, 58px);
+    padding-block: clamp(16px, 3vh, 30px);
   }
 
   .app-shell {
     margin: 0;
+    justify-self: start;
   }
 
   .desktop-info {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     position: relative;
     color: var(--ink);
+    justify-self: stretch;
+    max-width: 680px;
   }
 
   .desktop-info::before,
@@ -2048,18 +2052,23 @@ blockquote {
   .desktop-info::before {
     width: 14px;
     height: 14px;
-    right: 24px;
-    top: -8px;
+    right: 18px;
+    top: 22px;
     background: var(--yellow);
-    box-shadow: -118px 184px 0 var(--green-deep);
+    box-shadow: -132px 178px 0 var(--green-deep), -72px 518px 0 var(--green);
   }
 
   .desktop-info::after {
-    width: 8px;
-    height: 8px;
-    left: -28px;
-    bottom: 80px;
+    width: 10px;
+    height: 10px;
+    left: -24px;
+    bottom: 122px;
     background: var(--green);
+  }
+
+  .desktop-title-block {
+    position: relative;
+    padding: 0 10px 4px 0;
   }
 
   .desktop-kicker {
@@ -2067,21 +2076,82 @@ blockquote {
     font-size: 0.86rem;
     font-weight: 950;
     letter-spacing: 0;
+    text-transform: uppercase;
   }
 
   .desktop-info h2 {
-    margin: 0;
-    font-size: clamp(3rem, 4.8vw, 4.3rem);
+    margin: 8px 0 0;
+    font-size: clamp(3.35rem, 5.2vw, 4.75rem);
     line-height: 0.98;
     letter-spacing: 0;
   }
 
   .desktop-lead {
-    margin: 0;
-    color: #3d453f;
-    font-size: 1.08rem;
-    line-height: 1.75;
-    font-weight: 760;
+    max-width: 30em;
+    margin: 12px 0 0;
+    color: #303832;
+    font-size: 1.12rem;
+    line-height: 1.62;
+    font-weight: 850;
+  }
+
+  .desktop-task-note {
+    position: relative;
+    overflow: hidden;
+    padding: 22px 24px 20px;
+    border: 1px solid rgba(17, 17, 17, 0.12);
+    border-radius: 8px;
+    background:
+      radial-gradient(circle at 94% 18%, rgba(233, 85, 85, 0.96) 0 8px, transparent 9px),
+      radial-gradient(circle at 82% 78%, rgba(85, 195, 0, 0.88) 0 7px, transparent 8px),
+      linear-gradient(176deg, #ffe761 0%, #f4d12e 76%);
+    box-shadow: 0 22px 48px rgba(117, 106, 16, 0.18);
+    transform: rotate(-1deg);
+  }
+
+  .desktop-task-note::before {
+    content: "";
+    position: absolute;
+    left: 28px;
+    top: -12px;
+    width: 142px;
+    height: 38px;
+    background: rgba(255, 226, 74, 0.85);
+    transform: rotate(-10deg);
+    box-shadow: 0 10px 20px rgba(117, 106, 16, 0.12);
+  }
+
+  .desktop-note-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(17, 17, 17, 0.14);
+    color: #111111;
+    font-size: 0.9rem;
+    font-weight: 950;
+  }
+
+  .desktop-task-note h3 {
+    position: relative;
+    z-index: 1;
+    margin: 16px 0 0;
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+
+  .desktop-task-note p {
+    position: relative;
+    z-index: 1;
+    max-width: 29em;
+    margin: 12px 0 0;
+    color: rgba(17, 17, 17, 0.72);
+    font-size: 1rem;
+    line-height: 1.55;
+    font-weight: 850;
   }
 
   .desktop-tags {
@@ -2091,26 +2161,28 @@ blockquote {
   }
 
   .desktop-tags span {
-    padding: 8px 12px;
+    padding: 9px 13px;
     border: 1px solid rgba(85, 195, 0, 0.22);
     border-radius: 8px;
     background: rgba(224, 255, 205, 0.8);
     color: #20391a;
-    font-size: 0.88rem;
-    font-weight: 900;
+    font-size: 0.9rem;
+    font-weight: 950;
   }
 
   .desktop-steps-panel {
     display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
   }
 
   .desktop-steps-panel article {
-    display: grid;
-    grid-template-columns: 42px 1fr;
-    gap: 12px;
-    align-items: start;
-    padding: 14px;
+    display: flex;
+    min-height: 150px;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 14px 15px;
     border: 1px solid rgba(17, 17, 17, 0.08);
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.72);
@@ -2123,7 +2195,7 @@ blockquote {
     display: grid;
     place-items: center;
     border-radius: 8px;
-    background: var(--yellow);
+    background: var(--green);
     color: #111111;
     font-size: 1.25rem;
     font-weight: 950;
@@ -2133,53 +2205,88 @@ blockquote {
   .desktop-steps-panel strong,
   .desktop-qr-card strong {
     display: block;
-    font-size: 1.08rem;
+    font-size: 1.04rem;
     line-height: 1.25;
     font-weight: 950;
   }
 
   .desktop-steps-panel p,
-  .desktop-qr-card p,
-  .desktop-footnote {
+  .desktop-qr-card p {
     margin: 5px 0 0;
     color: var(--muted);
-    font-size: 0.92rem;
-    line-height: 1.55;
-    font-weight: 760;
+    font-size: 0.86rem;
+    line-height: 1.45;
+    font-weight: 820;
+  }
+
+  .desktop-qr-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 12px;
   }
 
   .desktop-qr-card {
-    display: grid;
-    grid-template-columns: 1fr 154px;
-    gap: 18px;
-    align-items: center;
+    display: flex;
+    min-height: 254px;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
     position: relative;
     overflow: hidden;
-    padding: 18px;
+    padding: 16px;
     border: 1px solid rgba(17, 17, 17, 0.1);
     border-radius: 8px;
+    box-shadow: 0 18px 42px rgba(35, 45, 28, 0.12);
+  }
+
+  .desktop-qr-card-primary {
     background:
       radial-gradient(circle at 90% 15%, rgba(158, 234, 35, 0.78) 0 10px, transparent 11px),
       linear-gradient(180deg, #f5d934 0%, #f1cc22 100%);
-    box-shadow: 0 22px 48px rgba(117, 106, 16, 0.18);
   }
 
-  .desktop-qr-card p {
-    color: rgba(17, 17, 17, 0.64);
+  .desktop-qr-card-wechat {
+    background:
+      radial-gradient(circle at 90% 18%, rgba(243, 208, 41, 0.8) 0 8px, transparent 9px),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.86) 0%, rgba(248, 250, 244, 0.94) 100%);
+  }
+
+  .desktop-qr-card-primary p {
+    color: rgba(17, 17, 17, 0.66);
   }
 
   .desktop-qr-card img {
-    width: 154px;
+    width: min(100%, 178px);
     aspect-ratio: 1;
-    padding: 10px;
+    align-self: center;
+    padding: 9px;
     border: 1px solid rgba(17, 17, 17, 0.12);
     border-radius: 8px;
     background: #ffffff;
     image-rendering: pixelated;
   }
 
-  .desktop-footnote {
-    margin-top: 0;
+  .desktop-qr-card-wechat img {
+    width: min(100%, 190px);
+    padding: 8px;
+    image-rendering: auto;
+  }
+}
+
+@media (min-width: 960px) and (max-width: 1120px) {
+  .desktop-steps-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .desktop-steps-panel article {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    justify-content: start;
+  }
+
+  .desktop-qr-grid {
+    grid-template-columns: 1fr;
   }
 }
 
