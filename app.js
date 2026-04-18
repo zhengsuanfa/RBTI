@@ -26,7 +26,7 @@ const profiles = [
         brave: "我想要不太甜的。",
         playful: "我想要那个听起来不会让我后悔的。",
         habitFeedback: "“都可以”让选择权溜走了。",
-        braveFeedback: "偏好说得很具体，这就是反向动作。",
+        braveFeedback: "偏好说得很具体，这一步很清楚。",
         playfulFeedback: "表达有点绕，但方向已经变清楚了。"
       },
       {
@@ -195,7 +195,7 @@ const profiles = [
         playful: "我投安静阵营一票。",
         habitFeedback: "“随便”让别人猜你。",
         braveFeedback: "你说出了方向，不必解释太多。",
-        playfulFeedback: "轻松但明确，副本有效。"
+        playfulFeedback: "轻松但明确，这次有效。"
       },
       {
         title: "最后一项调整",
@@ -499,7 +499,7 @@ const profiles = [
         playful: "把手从键盘上拿开十秒。",
         habitFeedback: "Boss 靠你的接管回血。",
         braveFeedback: "你保留结果要求，放掉过程控制。",
-        playfulFeedback: "十秒很短，但这是反向动作。"
+        playfulFeedback: "十秒很短，但这一步已经不一样了。"
       }
     ]
   },
@@ -677,31 +677,31 @@ const states = [
   {
     id: "social",
     label: "不想社交",
-    modifier: "今天的副本会把挑战压到一次低风险表达。",
+    modifier: "今天的挑战会压到一次低风险表达。",
     next: "找一个低风险对象，说出一个具体请求。"
   },
   {
     id: "delay",
     label: "拖延",
-    modifier: "今天的副本会强制你把任务拆成一个十分钟动作。",
+    modifier: "今天的挑战会强制你把任务拆成一个十分钟动作。",
     next: "选一件事，设置十分钟倒计时并开始。"
   },
   {
     id: "control",
     label: "控制欲爆棚",
-    modifier: "今天的副本会要求你只设边界，不接管过程。",
+    modifier: "今天的挑战会要求你只设边界，不接管过程。",
     next: "把一个任务交给别人，只同步验收标准。"
   },
   {
     id: "low",
     label: "低能量",
-    modifier: "今天的副本会降低门槛，只保留最小可行动作。",
+    modifier: "今天的挑战会降低门槛，只保留最小可行动作。",
     next: "完成一个两分钟动作，然后允许自己休息。"
   },
   {
     id: "brave",
     label: "想变勇敢",
-    modifier: "今天的副本会让你在安全范围内多迈一步。",
+    modifier: "今天的挑战会让你在安全范围内多迈一步。",
     next: "做一件平时会想太久的小事。"
   }
 ];
@@ -743,179 +743,293 @@ const resultTypes = {
   perfect: {
     code: "BOSS",
     name: "Boss 扣血狂魔",
-    line: "别人还在认识自己，你已经开始殴打惯性。",
-    roast: "今日嘴替：你不是突然外向，你只是把反向动作点成了连招。"
+    line: "平时不敢做的事，今天真的动了一下。",
+    roast: "今日嘴替：你不是突然换人了，你只是发现自己也能换个做法。"
   },
   habit: {
     code: "ZZZ",
-    name: "装死型幸存者",
+    name: "算了没事人",
     line: "嘴上说没事，身体已经自动切到省电模式。",
-    roast: "今日嘴替：你没有失败，你只是精准定位了自己的逃跑路线。"
+    roast: "今日嘴替：你没有失败，你只是看清了自己最常用的躲法。"
   },
   playful: {
     code: "SIDE",
-    name: "绕路式勇敢人",
-    line: "正面硬刚太吓人，那就从旁边钻一个洞进去。",
-    roast: "今日嘴替：你确实在逃，但逃着逃着也把门打开了。"
+    name: "绕路开门人",
+    line: "正面硬刚太吓人，那就从旁边开个小门。",
+    roast: "今日嘴替：你确实绕了一下，但至少没有直接退出。"
   },
   social: {
-    code: "ASKR",
-    name: "小声开口侠",
-    line: "嘴上说随便，心里已经写好需求文档。",
-    roast: "今日嘴替：你不是没有需求，你只是把需求藏得太有礼貌。"
+    code: "ASK",
+    name: "都可以本人",
+    line: "嘴上说随便，心里其实有一个很明确的想法。",
+    roast: "今日嘴替：你不是没有想法，你只是太习惯让别人猜。"
   },
   delay: {
     code: "MVP",
-    name: "先交一版人",
-    line: "脑子里有宇宙蓝图，手上先交一个能跑的纸壳火箭。",
-    roast: "今日嘴替：再优化五分钟这句话，已经骗了你五百次。"
+    name: "再想五分钟人",
+    line: "脑子里已经做完十版，手上还没开始第一版。",
+    roast: "今日嘴替：再想五分钟这句话，已经骗了你五百次。"
   },
   control: {
     code: "CTRL",
-    name: "控制权松手人",
+    name: "还是我来吧人",
     line: "手离键盘十秒钟，世界竟然没有立刻崩塌。",
     roast: "今日嘴替：你不是不信任别人，你只是太相信自己了。"
   },
   low: {
-    code: "MINI",
-    name: "两分钟续命人",
-    line: "今天不追求逆天改命，只完成一个小得不能再小的动作。",
-    roast: "今日嘴替：低能量不是摆烂，是系统正在低电量保护。"
+    code: "LOW",
+    name: "电量 1% 硬撑人",
+    line: "明明已经没电了，还想假装自己能满格运行。",
+    roast: "今日嘴替：你不是摆烂，是系统正在低电量保护。"
   },
   brave: {
-    code: "DIVE",
-    name: "轻微破防勇士",
+    code: "GO",
+    name: "怕但还是点了人",
     line: "没有热血 BGM，也可以往前挪一厘米。",
     roast: "今日嘴替：你不是突然无所畏惧，你只是决定怕着也点一下。"
   },
   brake: {
-    code: "BRAK",
-    name: "冲动刹车员",
-    line: "油门还在，脚终于想起旁边有个刹车。",
+    code: "RUN",
+    name: "油门踩到底人",
+    line: "油门已经踩下去了，刹车才刚刚想起自己存在。",
     roast: "今日嘴替：先冲再说很帅，先看一眼坑也不丢人。"
   },
   care: {
-    code: "OFFD",
-    name: "气氛组下班人",
-    line: "今天不包圆全场情绪，只负责把自己也算个人。",
-    roast: "今日嘴替：你不是冷漠，你只是终于没有把所有人的心情都外包给自己。"
+    code: "ALL",
+    name: "全场情绪客服",
+    line: "别人还没开口，你已经开始替所有人负责。",
+    roast: "今日嘴替：你不是冷漠，你只是终于把自己也算进去了。"
   },
   boundary: {
-    code: "NOPE",
-    name: "边界修复师",
-    line: "不是变冷漠，是把自己从待办里救出来。",
+    code: "NO",
+    name: "说不出口人",
+    line: "嘴上说可以，心里已经打开求救窗口。",
     roast: "今日嘴替：你不是不好相处，你只是终于给好人模式加了门禁。"
   },
   focus: {
-    code: "FOCS",
-    name: "单线程续命人",
-    line: "灵感还在排队，主线先把门打开。",
+    code: "NEW",
+    name: "新想法插队人",
+    line: "主线还没走完，新想法已经开始敲锣打鼓。",
     roast: "今日嘴替：新想法没有被抛弃，只是暂时不能坐驾驶位。"
   },
   conflict: {
-    code: "PEAC",
-    name: "先接球再反驳人",
-    line: "刀还在，但先用刀背轻轻敲一下。",
+    code: "BUT",
+    name: "开口先但是人",
+    line: "“但是”两个字，已经站在舌尖准备出场。",
     roast: "今日嘴替：你不是输给了对方，你只是赢回了对话。"
   },
   default: {
     code: "RBTI",
-    name: "反着来一下人",
+    name: "换个做法试试人",
     line: "人格没有换号，只是今天多解锁了一个动作。",
-    roast: "今日嘴替：你还是你，但惯性开始有点慌。"
+    roast: "今日嘴替：你还是你，但老习惯开始有点慌。"
   }
+};
+
+const resultTypeImages = {
+  ALL: "./assets/result-types/ALL.jpg",
+  ASK: "./assets/result-types/ASK.jpg",
+  BOSS: "./assets/result-types/BOSS.jpg",
+  BUT: "./assets/result-types/BUT.jpg",
+  CTRL: "./assets/result-types/CTRL.jpg",
+  GO: "./assets/result-types/GO.jpg",
+  LOW: "./assets/result-types/LOW.jpg",
+  MVP: "./assets/result-types/MVP.jpg",
+  NEW: "./assets/result-types/NEW.jpg",
+  NO: "./assets/result-types/NO.jpg",
+  RUN: "./assets/result-types/RUN.jpg",
+  SIDE: "./assets/result-types/SIDE.jpg",
+  ZZZ: "./assets/result-types/ZZZ.jpg"
 };
 
 const assessmentDimensions = {
   express: {
-    label: "需求表达",
+    label: "不说需求",
     profile: "INFP",
     state: "social",
     intensity: "normal",
     resultType: "social",
     scenario: "我想去问导师一个问题，但又怕自己表达不清楚。",
-    description: "你今天最容易把需求藏进“都可以”。副本会从一次低风险表达开始，让你把模糊偏好说成一句具体请求。",
+    description: "你今天最容易把想法藏进“都可以”。挑战会从一次低风险开口开始。",
     tags: ["表达", "请求", "低风险社交"]
   },
   action: {
-    label: "行动启动",
+    label: "一直想想",
     profile: "INTP",
     state: "delay",
     intensity: "normal",
     resultType: "delay",
     scenario: "我想把功能做完整，但时间只够交一个 MVP。",
-    description: "你今天最容易在优化和推演里打转。副本会帮你把大目标压缩成一个能先交出去的版本。",
+    description: "你今天最容易在优化和推演里打转。挑战会把大目标压成一个先能交出去的版本。",
     tags: ["启动", "MVP", "先交一版"]
   },
   boundary: {
-    label: "边界拒绝",
+    label: "不好拒绝",
     profile: "ISFJ",
     state: "brave",
     intensity: "normal",
     resultType: "boundary",
     scenario: "我想拒绝一个临时请求，但怕对方不开心。",
-    description: "你今天最容易把别人的临时需求接到自己身上。副本会练习温和但清楚地说不。",
+    description: "你今天最容易把别人的临时请求接到自己身上。挑战会让你练一句清楚的拒绝。",
     tags: ["边界", "拒绝", "不过载"]
   },
   control: {
-    label: "控制协作",
+    label: "总想自己来",
     profile: "ENTJ",
     state: "control",
     intensity: "normal",
     resultType: "control",
     scenario: "我想让队友接手，但总觉得还是我来更快。",
-    description: "你今天最容易用“我来更快”接管现场。副本会要求你只给目标和验收标准，不替别人做。",
+    description: "你今天最容易用“我来更快”接管现场。挑战会让你只说清目标，不替别人做。",
     tags: ["协作", "授权", "松手"]
   },
   focus: {
-    label: "注意力收束",
+    label: "灵感跑偏",
     profile: "ENFP",
     state: "delay",
     intensity: "normal",
     resultType: "focus",
     scenario: "我突然想到新功能，但当前主流程还没跑通。",
-    description: "你今天最容易被新鲜想法拐走。副本会把灵感先放进队列，让主线完成一次闭环。",
+    description: "你今天最容易被新鲜想法拐走。挑战会让新点子排队，先把主线跑完。",
     tags: ["收束", "主线", "防分心"]
   },
   conflict: {
-    label: "冲突回应",
+    label: "一开口就反驳",
     profile: "ENTP",
     state: "brave",
     intensity: "normal",
     resultType: "conflict",
     scenario: "我不同意一个方案，但怕讨论变成争论。",
-    description: "你今天最容易把不同意说成直接开辩。副本会练习先接住有效点，再补充风险。",
+    description: "你今天最容易把不同意说成直接开辩。挑战会让你先接一句，再说问题。",
     tags: ["回应", "讨论", "先接球"]
   },
   impulse: {
-    label: "冲动刹车",
+    label: "先冲再说",
     profile: "ESTP",
     state: "brave",
     intensity: "normal",
     resultType: "brake",
     scenario: "我想马上加一个新效果，但还没测试当前版本。",
-    description: "你今天最容易被即时刺激带上油门。副本会给冲劲加一个三秒暂停和最小风险检查。",
+    description: "你今天最容易被即时刺激带上油门。挑战会给冲劲加一个三秒暂停。",
     tags: ["刹车", "冒险", "先看坑"]
   },
   energy: {
-    label: "能量管理",
+    label: "低电量硬撑",
     profile: "ESFJ",
     state: "low",
     intensity: "soft",
     resultType: "low",
     scenario: "我已经很累，但还在强撑着继续做。",
-    description: "你今天最容易把低电量误判成不够努力。副本会降低门槛，只保留一个两分钟动作。",
+    description: "你今天最容易把低电量误判成不够努力。挑战会降低门槛，只保留一个两分钟动作。",
     tags: ["低能量", "续命", "小动作"]
   },
   brave: {
-    label: "反向动作",
+    label: "敢试一下",
     profile: "ESTP",
     state: "brave",
     intensity: "hard",
     resultType: "brave",
     scenario: "我已经有点敢反着来，想试一件平时会想太久的小事。",
-    description: "你在 8 个场景里都更接近反向动作。本局会给你一个更直接的勇敢副本。",
+    description: "你在 8 个场景里都选了更主动的做法。本局会给你一个更直接的挑战。",
     tags: ["进阶", "反向", "加难度"]
+  }
+};
+
+const assessmentInterpretations = {
+  social:
+    "让我们直面这个今日人格：ASK。它不是没主见，而是把主见塞进了“都可以”的保温杯里。别人问你想要什么，你的大脑其实已经写好小作文，但嘴巴为了维护现场和平，自动发送了一个无害版本。ASK 的核心不是沉默，而是太擅长把需求降噪。今天的反着来，不需要你突然变成社交悍匪，只要把一个小需求说清楚，让别人终于不用靠猜谜理解你。",
+  delay:
+    "MVP 型人格的大脑通常很热闹，版本号已经迭代到 18.3，现实里的文件还停在“新建文档”。你不是不会做，而是太想一次做对、做全、做漂亮。问题是时间不会等灵感排队。今天的反着来，就是把脑内史诗项目压成一个能展示的小版本：先让它出门，再让它变好。",
+  boundary:
+    "NO 型人格最强的技能是把“我不行”翻译成“我来吧”。你的好人系统响应很快，快到自己的电量还没检查，别人的请求已经接单成功。今天的关键不是变冷漠，而是把帮助范围说清楚：拒绝任务，不等于拒绝关系；守住边界，也不等于变成坏人。",
+  control:
+    "CTRL 型人格不是控制狂，至少你本人会说这叫“保证质量”。你确实很能扛，也很容易觉得“还是我来更快”。但当所有方向盘都在你手里，队友只会越来越像乘客。今天的反着来，是练习只给目标、截止时间和验收标准，把过程真的交出去一点。",
+  focus:
+    "NEW 型人格的脑内像开了灵感弹幕，新功能、新参考、新彩蛋随时刷屏。问题不是你没有创造力，而是主线还没跑完，支线已经开始要求加戏。今天的反着来，不是杀死灵感，而是给灵感发号码牌：先完成当前主线，再决定谁能上车。",
+  conflict:
+    "BUT 型人格的反应速度很快，快到“但是”两个字已经站在舌尖热身。你能看见问题，也擅长拆解逻辑，但别人有时只听见了否定。今天的反着来，是先接住一个有效点，再补风险。不是让你闭嘴，而是让你的判断更容易被听进去。",
+  brake:
+    "RUN 型人格的行动力很猛，看到刺激方案就想直接踩油门。你不是莽，你只是相信现场会给答案。但 Demo、协作和时间线有时候经不起裸奔式冒险。今天的反着来，是在冲之前加三秒刹车：先看坑，再起跳，帅气不减，翻车率下降。",
+  low:
+    "LOW 型人格不是摆烂，而是系统已经进入低电量保护，你还在假装满格运行。你习惯把累解释成“不够努力”，于是越撑越卡。今天的反着来，是承认电量这件事真的存在：先做一个两分钟动作，再允许自己恢复，不靠硬撑证明价值。",
+  brave:
+    "GO 型人格说明你今天已经有点反着来了。别人还在和旧习惯谈判，你已经连续选择更主动的做法。这个结果不是说你无所畏惧，而是你愿意怕着也往前挪一点。接下来的挑战会更直接一点，看看这份主动能不能落到真实场景里。",
+  default:
+    "RBTI 的重点不是给你盖章，而是抓住今天最容易重复的动作。你还是你，只是系统帮你把旧习惯标红，然后给出一个能反着试的小任务。"
+};
+
+const dimensionMeta = {
+  express: {
+    code: "R1",
+    title: "需求表达",
+    copy: [
+      "能把偏好说出来，别人不需要全靠猜。",
+      "会试探着说一点，但关键需求还容易变模糊。",
+      "一紧张就把想法塞回“都可以”里。"
+    ]
+  },
+  action: {
+    code: "R2",
+    title: "行动启动",
+    copy: [
+      "能先交一版，再接受后续优化。",
+      "会做计划，但启动按钮偶尔还会卡住。",
+      "脑内已经做完十版，现实还在等待开工。"
+    ]
+  },
+  boundary: {
+    code: "R3",
+    title: "边界拒绝",
+    copy: [
+      "能拒绝完整任务，同时保留关系温度。",
+      "知道自己接不下，但话容易说得太软。",
+      "好人模式响应太快，自己的电量排在后面。"
+    ]
+  },
+  control: {
+    code: "R4",
+    title: "掌控松手",
+    copy: [
+      "能设清标准，然后让别人真的去做。",
+      "表面放手，手指还停在遥控器上。",
+      "“我来更快”很容易接管整个现场。"
+    ]
+  },
+  focus: {
+    code: "R5",
+    title: "灵感收束",
+    copy: [
+      "能让新想法排队，先保住当前主线。",
+      "灵感来了会看一眼，但还没完全偏航。",
+      "主线还没跑完，新功能已经开始敲门。"
+    ]
+  },
+  conflict: {
+    code: "R6",
+    title: "对话接球",
+    copy: [
+      "能先接住有效点，再补充自己的风险判断。",
+      "会缓和语气，但观点仍容易绕着否定开场。",
+      "“但是”两个字经常抢跑。"
+    ]
+  },
+  impulse: {
+    code: "R7",
+    title: "冲动刹车",
+    copy: [
+      "行动前会先补一个最小风险判断。",
+      "动作变小了，但安全绳还不够明显。",
+      "速度很快，备份和回滚还没来得及上车。"
+    ]
+  },
+  energy: {
+    code: "R8",
+    title: "能量自觉",
+    copy: [
+      "能承认电量，并用小动作维持推进。",
+      "知道自己累了，但还想再硬撑一点。",
+      "低电量已经报警，你还想靠意志力满格运行。"
+    ]
   }
 };
 
@@ -923,26 +1037,26 @@ const quizQuestions = [
   {
     id: "express",
     dimension: "express",
-    title: "别人问你想要什么",
-    scene: "你明明有偏好，但担心说出来会麻烦别人。",
+    title: "朋友问：你想吃什么？",
+    scene: "你其实想吃清淡一点，但怕别人觉得麻烦。",
     options: [
       {
         value: "habit",
-        label: "人格惯性",
+        label: "A",
         text: "都可以，你们定就好。",
         hint: "把需求交给空气处理。",
         score: 2
       },
       {
         value: "middle",
-        label: "折中反应",
+        label: "B",
         text: "我都行，但最好别太麻烦。",
         hint: "说了一点，但还不够具体。",
         score: 1
       },
       {
         value: "reverse",
-        label: "反向动作",
+        label: "C",
         text: "我想要 A，最好不要太辣。",
         hint: "偏好和边界都说清楚。",
         score: 0
@@ -952,26 +1066,26 @@ const quizQuestions = [
   {
     id: "action",
     dimension: "action",
-    title: "时间只够做一版",
-    scene: "你有很多想法，但今晚必须先跑通主流程。",
+    title: "今晚必须交一版，你会？",
+    scene: "你有很多想法，但现在只能先跑通主流程。",
     options: [
       {
         value: "habit",
-        label: "人格惯性",
+        label: "A",
         text: "再想想有没有办法全都做。",
         hint: "推演很爽，进度停住。",
         score: 2
       },
       {
         value: "middle",
-        label: "折中反应",
+        label: "B",
         text: "先列一个更完整的计划。",
         hint: "计划有用，但还没有交付。",
         score: 1
       },
       {
         value: "reverse",
-        label: "反向动作",
+        label: "C",
         text: "砍到两个功能，先交能演示的。",
         hint: "让作品先出门。",
         score: 0
@@ -981,26 +1095,26 @@ const quizQuestions = [
   {
     id: "boundary",
     dimension: "boundary",
-    title: "别人临时塞来一个请求",
+    title: "别人临时让你帮忙，你会？",
     scene: "你知道自己接不下，但又怕拒绝让关系变尴尬。",
     options: [
       {
         value: "habit",
-        label: "人格惯性",
+        label: "A",
         text: "可以，我来吧。",
         hint: "好人模式自动接单。",
         score: 2
       },
       {
         value: "middle",
-        label: "折中反应",
+        label: "B",
         text: "我可能做不完，但我试试。",
         hint: "说了困难，但边界还软。",
         score: 1
       },
       {
         value: "reverse",
-        label: "反向动作",
+        label: "C",
         text: "我不能接完整任务，但可以给十分钟建议。",
         hint: "拒绝任务，不拒绝关系。",
         score: 0
@@ -1010,26 +1124,26 @@ const quizQuestions = [
   {
     id: "control",
     dimension: "control",
-    title: "队友准备接手",
+    title: "队友说他来做，你会？",
     scene: "你觉得他可能没你快，手已经想伸过去。",
     options: [
       {
         value: "habit",
-        label: "人格惯性",
+        label: "A",
         text: "算了，还是我来。",
         hint: "效率上来，协作下线。",
         score: 2
       },
       {
         value: "middle",
-        label: "折中反应",
+        label: "B",
         text: "你先做，我随时看着。",
         hint: "像放手，但仍在遥控。",
         score: 1
       },
       {
         value: "reverse",
-        label: "反向动作",
+        label: "C",
         text: "我只确认截止时间和验收标准。",
         hint: "保留标准，放掉过程。",
         score: 0
@@ -1039,26 +1153,26 @@ const quizQuestions = [
   {
     id: "focus",
     dimension: "focus",
-    title: "突然想到一个新玩法",
+    title: "你突然想到新功能，你会？",
     scene: "它真的很有趣，但当前版本还没完整跑通。",
     options: [
       {
         value: "habit",
-        label: "人格惯性",
+        label: "A",
         text: "这个很小，我马上加。",
         hint: "新鲜感劫持主线。",
         score: 2
       },
       {
         value: "middle",
-        label: "折中反应",
+        label: "B",
         text: "我先查一下怎么做。",
         hint: "还没动手，但注意力已偏航。",
         score: 1
       },
       {
         value: "reverse",
-        label: "反向动作",
+        label: "C",
         text: "先记到明日清单，继续跑主流程。",
         hint: "灵感排队，主线先走。",
         score: 0
@@ -1068,26 +1182,26 @@ const quizQuestions = [
   {
     id: "conflict",
     dimension: "conflict",
-    title: "你不同意一个方案",
+    title: "你不同意一个方案，你会？",
     scene: "你看到了问题，但不想让讨论变成争论。",
     options: [
       {
         value: "habit",
-        label: "人格惯性",
+        label: "A",
         text: "但是这里有三个问题。",
         hint: "判断很快，听感很硬。",
         score: 2
       },
       {
         value: "middle",
-        label: "折中反应",
+        label: "B",
         text: "我不是反对，只是觉得不太对。",
         hint: "缓了一下，但还没给方向。",
         score: 1
       },
       {
         value: "reverse",
-        label: "反向动作",
+        label: "C",
         text: "这个方向能解决展示问题，我补一个风险点。",
         hint: "先接球，再补充。",
         score: 0
@@ -1097,26 +1211,26 @@ const quizQuestions = [
   {
     id: "impulse",
     dimension: "impulse",
-    title: "现场来了一个刺激机会",
+    title: "现场想加一个刺激效果，你会？",
     scene: "你很想马上冲，但它可能影响已有成果。",
     options: [
       {
         value: "habit",
-        label: "人格惯性",
+        label: "A",
         text: "先上，坏了再说。",
         hint: "速度很快，风险裸奔。",
         score: 2
       },
       {
         value: "middle",
-        label: "折中反应",
+        label: "B",
         text: "我先改一点点看看。",
         hint: "动作变小，但还没安全绳。",
         score: 1
       },
       {
         value: "reverse",
-        label: "反向动作",
+        label: "C",
         text: "先备份，再判断要不要展示。",
         hint: "冒险可以，但要可回滚。",
         score: 0
@@ -1126,26 +1240,26 @@ const quizQuestions = [
   {
     id: "energy",
     dimension: "energy",
-    title: "你已经很累了",
+    title: "你已经没电了，你会？",
     scene: "脑子开始卡，但你还想用意志力硬撑。",
     options: [
       {
         value: "habit",
-        label: "人格惯性",
+        label: "A",
         text: "继续顶住，不能拖后腿。",
         hint: "把低电量当成不努力。",
         score: 2
       },
       {
         value: "middle",
-        label: "折中反应",
+        label: "B",
         text: "再撑十分钟看看。",
         hint: "听起来短，但还在透支。",
         score: 1
       },
       {
         value: "reverse",
-        label: "反向动作",
+        label: "C",
         text: "先完成一个两分钟动作，然后休息。",
         hint: "先保命，再推进。",
         score: 0
@@ -1161,6 +1275,7 @@ let selectedIntensity = "normal";
 let quizIndex = 0;
 let quizScores = {};
 let quizAnswers = [];
+let quizLocked = false;
 let assessmentResult = null;
 let currentDungeon = null;
 let currentLevelIndex = 0;
@@ -1176,20 +1291,32 @@ let scores = {
 
 const $ = (id) => document.getElementById(id);
 
+const appShell = document.querySelector(".app-shell");
 const screens = Array.from(document.querySelectorAll(".screen"));
 const startButton = $("startButton");
 const quizProgress = $("quizProgress");
 const quizProgressBar = $("quizProgressBar");
+const quizScanDots = $("quizScanDots");
+const quizScanCode = $("quizScanCode");
+const quizScanStatus = $("quizScanStatus");
 const quizDimension = $("quizDimension");
 const quizTitle = $("quizTitle");
 const quizScene = $("quizScene");
 const quizOptions = $("quizOptions");
+const quizReaction = $("quizReaction");
 const assessmentCode = $("assessmentCode");
 const assessmentName = $("assessmentName");
+const assessmentPosterName = $("assessmentPosterName");
+const assessmentPosterCode = $("assessmentPosterCode");
+const assessmentPosterImage = $("assessmentPosterImage");
+const assessmentPosterLine = $("assessmentPosterLine");
 const assessmentDimension = $("assessmentDimension");
 const assessmentScore = $("assessmentScore");
 const assessmentCopy = $("assessmentCopy");
 const assessmentTags = $("assessmentTags");
+const assessmentInterpretation = $("assessmentInterpretation");
+const assessmentDimensionList = $("assessmentDimensionList");
+const shareAssessmentButton = $("shareAssessmentButton");
 const generateFromAssessmentButton = $("generateFromAssessmentButton");
 const retakeQuizButton = $("retakeQuizButton");
 const toSceneButton = $("toSceneButton");
@@ -1209,6 +1336,11 @@ const bossName = $("bossName");
 const dungeonName = $("dungeonName");
 const dungeonGoal = $("dungeonGoal");
 const dungeonTags = $("dungeonTags");
+const taskCode = $("taskCode");
+const taskRbti = $("taskRbti");
+const taskRisk = $("taskRisk");
+const taskEstimate = $("taskEstimate");
+const taskIntensity = $("taskIntensity");
 const runMbti = $("runMbti");
 const runState = $("runState");
 const runIntensity = $("runIntensity");
@@ -1221,6 +1353,7 @@ const reportEmpty = $("reportEmpty");
 const reportCard = $("reportCard");
 const resultCode = $("resultCode");
 const resultName = $("resultName");
+const reportTypeImage = $("reportTypeImage");
 const resultLine = $("resultLine");
 const reportTitle = $("reportTitle");
 const reportSummary = $("reportSummary");
@@ -1236,6 +1369,7 @@ function showScreen(screenId) {
   screens.forEach((screen) => {
     screen.classList.toggle("is-active", screen.id === screenId);
   });
+  appShell.classList.remove("is-challenge-mode");
   window.scrollTo({ top: 0, behavior: "auto" });
 }
 
@@ -1246,6 +1380,29 @@ function escapeHTML(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function clampNumber(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function getDimensionLevel(score) {
+  if (score >= 2) return { label: "H", points: 6, percent: 100 };
+  if (score === 1) return { label: "M", points: 4, percent: 64 };
+  return { label: "L", points: 2, percent: 28 };
+}
+
+function getAssessmentConfidence(result) {
+  if (result.id === "brave") {
+    return "主动选择命中度很高，当前结果可视为你的今日进阶画像。";
+  }
+  if (result.matchPercent >= 82) {
+    return "维度命中度很高，当前结果可视为你的今日第一人格画像。";
+  }
+  if (result.matchPercent >= 70) {
+    return "维度命中度较高，当前结果可视为你的今日主要人格画像。";
+  }
+  return "维度命中度中等，当前结果更适合当作今天的行动提醒。";
 }
 
 function getProfile() {
@@ -1265,6 +1422,35 @@ function getIntensity() {
   return intensities.find((intensity) => intensity.id === selectedIntensity) || intensities[1];
 }
 
+function getRiskLabel(intensityId) {
+  if (intensityId === "hard") return "高能量";
+  if (intensityId === "soft") return "轻量";
+  return "低风险";
+}
+
+function getResultTypeImage(code) {
+  return resultTypeImages[code] || resultTypeImages.ASK || "./assets/home-hero.png";
+}
+
+function getQuizOptionMeta(value) {
+  if (value === "habit") {
+    return {
+      label: "老习惯",
+      reaction: "已记录一个老习惯"
+    };
+  }
+  if (value === "middle") {
+    return {
+      label: "试探一下",
+      reaction: "已记录一个中间态"
+    };
+  }
+  return {
+    label: "反着来",
+    reaction: "已记录一次反着来"
+  };
+}
+
 function resetQuiz() {
   quizIndex = 0;
   quizScores = {};
@@ -1272,6 +1458,7 @@ function resetQuiz() {
     quizScores[question.dimension] = 0;
   });
   quizAnswers = [];
+  quizLocked = false;
   assessmentResult = null;
   selectedChallengeMbti = null;
   renderQuiz();
@@ -1280,22 +1467,40 @@ function resetQuiz() {
 function renderQuiz() {
   const question = quizQuestions[quizIndex] || quizQuestions[0];
   const dimension = assessmentDimensions[question.dimension];
+  const meta = dimensionMeta[question.dimension];
   const progress = Math.round(((quizIndex + 1) / quizQuestions.length) * 100);
 
+  quizLocked = false;
   quizProgress.textContent = `${quizIndex + 1} / ${quizQuestions.length}`;
   quizProgressBar.style.width = `${progress}%`;
-  quizDimension.textContent = dimension.label;
+  quizScanCode.textContent = meta?.code || `R${quizIndex + 1}`;
+  quizScanStatus.textContent = `扫描 ${quizIndex + 1} / ${quizQuestions.length}`;
+  quizScanDots.innerHTML = quizQuestions
+    .map((_, index) => {
+      const state = index < quizIndex ? "is-done" : index === quizIndex ? "is-current" : "";
+      return `<i class="${state}"></i>`;
+    })
+    .join("");
+  quizDimension.textContent = `正在检测：${dimension.label}`;
   quizTitle.textContent = question.title;
   quizScene.textContent = question.scene;
+  quizReaction.classList.remove("is-visible");
+  quizReaction.removeAttribute("data-tone");
+  quizReaction.textContent = "";
+  quizOptions.classList.remove("is-locked");
   quizOptions.innerHTML = question.options
     .map(
-      (option, index) => `
+      (option, index) => {
+        const optionMeta = getQuizOptionMeta(option.value);
+        return `
         <button class="quiz-option" type="button" data-quiz-option="${index}" data-quiz-value="${option.value}">
-          <span>${option.label}</span>
+          <span>${String.fromCharCode(65 + index)}</span>
+          <em>${escapeHTML(optionMeta.label)}</em>
           <strong>${escapeHTML(option.text)}</strong>
-          <em>${escapeHTML(option.hint)}</em>
+          <small>${escapeHTML(option.hint)}</small>
         </button>
-      `
+      `;
+      }
     )
     .join("");
 }
@@ -1316,6 +1521,23 @@ function calculateAssessment() {
   const reverseCount = quizAnswers.filter((answer) => answer.value === "reverse").length;
   const habitCount = quizAnswers.filter((answer) => answer.value === "habit").length;
   const middleCount = quizAnswers.filter((answer) => answer.value === "middle").length;
+  const answerCount = quizAnswers.length || quizQuestions.length;
+  const dimensionScores = dimensionOrder.map((id) => ({
+    id,
+    score: quizScores[id] || 0,
+    max: 2
+  }));
+  const totalScore = dimensionScores.reduce((sum, item) => sum + item.score, 0);
+  const maxScore = dimensionScores.length * 2;
+  const hitCount = dominantId === "brave" ? reverseCount : dimensionScores.filter((item) => item.score > 0).length;
+  const matchPercent =
+    dominantId === "brave"
+      ? clampNumber(Math.round(68 + (reverseCount / answerCount) * 24), 72, 96)
+      : clampNumber(
+          Math.round(56 + (top.score / 2) * 18 + (totalScore / maxScore) * 20 + (habitCount / answerCount) * 8),
+          62,
+          96
+        );
 
   return {
     id: dominantId,
@@ -1326,7 +1548,10 @@ function calculateAssessment() {
     reverseCount,
     habitCount,
     middleCount,
-    answerCount: quizAnswers.length,
+    answerCount,
+    dimensionScores,
+    hitCount,
+    matchPercent,
     code: resultType.code,
     name: resultType.name,
     line: resultType.line
@@ -1346,24 +1571,81 @@ function renderAssessment() {
   const baseProfile = getBaseProfile();
   const scoreLine =
     assessmentResult.id === "brave"
-      ? `反向动作 ${assessmentResult.reverseCount} / ${assessmentResult.answerCount}，本局直接加难度`
-      : `惯性强度 ${assessmentResult.score} / 2 · 反向动作 ${assessmentResult.reverseCount} / ${assessmentResult.answerCount}`;
+      ? `匹配度 ${assessmentResult.matchPercent}% · 主动命中 ${assessmentResult.reverseCount}/${assessmentResult.answerCount} 维`
+      : `匹配度 ${assessmentResult.matchPercent}% · 精准命中 ${assessmentResult.hitCount}/${assessmentResult.answerCount} 维`;
+  const confidence = getAssessmentConfidence(assessmentResult);
+  const interpretation =
+    assessmentInterpretations[assessmentResult.resultType] || assessmentInterpretations[assessmentResult.id] || assessmentInterpretations.default;
+  const assessmentImage = resultTypeImages[assessmentResult.code] || resultTypeImages.ASK;
 
+  assessmentPosterName.textContent = assessmentResult.name;
+  assessmentPosterCode.textContent = assessmentResult.code;
+  assessmentPosterImage.src = assessmentImage;
+  assessmentPosterLine.textContent = assessmentResult.line;
   assessmentCode.textContent = assessmentResult.code;
   assessmentName.textContent = assessmentResult.name;
-  assessmentDimension.textContent = `最高惯性：${assessmentResult.label}`;
+  assessmentDimension.textContent = `${assessmentResult.code}（${assessmentResult.name}）`;
   assessmentScore.textContent = scoreLine;
-  assessmentCopy.textContent = `你选择的人格底色是 ${baseProfile.id} ${baseProfile.nickname}。${assessmentResult.description}`;
+  assessmentCopy.textContent = `${confidence} 你选择的人格底色是 ${baseProfile.id} ${baseProfile.nickname}。${assessmentResult.description}`;
   assessmentTags.innerHTML = [
+    `匹配度 ${assessmentResult.matchPercent}%`,
     `底色 ${baseProfile.id}`,
     assessmentResult.label,
-    `副本 ${assessmentResult.challengeMbti}`,
+    `挑战 ${assessmentResult.challengeMbti}`,
     states.find((state) => state.id === assessmentResult.state)?.label || "今日状态",
     intensities.find((intensity) => intensity.id === assessmentResult.intensity)?.label || "挑战强度",
     ...assessmentResult.tags
   ]
     .map((tag) => `<span>${escapeHTML(tag)}</span>`)
     .join("");
+  assessmentInterpretation.textContent = interpretation;
+  assessmentDimensionList.innerHTML = assessmentResult.dimensionScores
+    .map((item) => {
+      const meta = dimensionMeta[item.id];
+      const level = getDimensionLevel(item.score);
+      const description = meta.copy[item.score] || meta.copy[0];
+      return `
+        <article class="dimension-item">
+          <header>
+            <strong>${escapeHTML(meta.code)} ${escapeHTML(meta.title)}</strong>
+            <em>${level.label} / ${level.points}分</em>
+          </header>
+          <p>${escapeHTML(description)}</p>
+          <div class="dimension-meter" aria-hidden="true"><i style="width: ${level.percent}%"></i></div>
+        </article>
+      `;
+    })
+    .join("");
+}
+
+async function shareAssessment() {
+  if (!assessmentResult) return;
+  const baseProfile = getBaseProfile();
+  const text = `我的今日 RBTI：${assessmentResult.code} ${assessmentResult.name}，匹配度 ${assessmentResult.matchPercent}%。${assessmentResult.line} 人格底色是 ${baseProfile.id}，今天最该反着练的是${assessmentResult.label}。`;
+  const originalText = "分享测试结果";
+
+  try {
+    if (navigator.share) {
+      await navigator.share({
+        title: "今天别做自己",
+        text
+      });
+      return;
+    }
+
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      shareAssessmentButton.textContent = "结果文案已复制";
+    } else {
+      shareAssessmentButton.textContent = "可以截图分享";
+    }
+  } catch (error) {
+    shareAssessmentButton.textContent = "可以截图分享";
+  }
+
+  window.setTimeout(() => {
+    shareAssessmentButton.textContent = originalText;
+  }, 1600);
 }
 
 function answerQuiz(optionIndex) {
@@ -1455,9 +1737,9 @@ function buildDungeon() {
   const intensity = getIntensity();
   const scenario = scenarioInput.value.trim();
   const scenarioLine = scenario ? `今天的真实场景是：${scenario}` : "今天先从一个低风险动作开始。";
-  const assessmentName = assessmentResult ? `${assessmentResult.label}副本：` : "";
+  const assessmentName = assessmentResult ? `${assessmentResult.label}挑战：` : "";
   const tags = assessmentResult
-    ? [`底色 ${baseProfile.id}`, `副本 ${profile.id}`, assessmentResult.label, state.label, intensity.label]
+    ? [`底色 ${baseProfile.id}`, `挑战 ${profile.id}`, assessmentResult.label, state.label, intensity.label]
     : [profile.id, profile.nickname, state.label, intensity.label];
 
   return {
@@ -1482,7 +1764,7 @@ function showLoading(isLoading) {
   loadingPanel.classList.toggle("is-visible", isLoading);
   dungeonCard.classList.toggle("is-dimmed", isLoading);
   generateButton.disabled = isLoading;
-  generateButton.textContent = isLoading ? "生成中..." : "生成反人格副本";
+  generateButton.textContent = isLoading ? "生成中..." : "生成挑战";
   startLevelButton.disabled = isLoading;
 }
 
@@ -1511,11 +1793,17 @@ function generateDungeon(withLoading = true) {
 function renderDungeon() {
   if (!currentDungeon) return;
   const { profile, baseProfile, state, intensity, assessment } = currentDungeon;
+  const rbtiCode = assessment?.code || profile.id;
 
-  dungeonImage.src = profile.image;
+  if (dungeonImage) dungeonImage.src = profile.image;
   bossName.textContent = currentDungeon.boss;
-  dungeonName.textContent = currentDungeon.name;
-  dungeonGoal.textContent = currentDungeon.goal;
+  if (dungeonName) dungeonName.textContent = currentDungeon.name;
+  dungeonGoal.textContent = profile.goal;
+  if (taskCode) taskCode.textContent = `${rbtiCode}-01`;
+  if (taskRbti) taskRbti.textContent = `今日 RBTI: ${rbtiCode}`;
+  if (taskRisk) taskRisk.textContent = getRiskLabel(intensity.id);
+  if (taskEstimate) taskEstimate.textContent = intensity.id === "hard" ? "预计 5 分钟" : "预计 3 分钟";
+  if (taskIntensity) taskIntensity.textContent = intensity.label;
   runMbti.textContent = assessment ? `${baseProfile.id} · ${assessment.label}` : profile.id;
   runState.textContent = state.label;
   runIntensity.textContent = intensity.label;
@@ -1524,9 +1812,9 @@ function renderDungeon() {
 }
 
 function renderScores() {
-  courageValue.textContent = scores.courage;
-  escapeValue.textContent = scores.escape;
-  completionValue.textContent = `${scores.completion}%`;
+  if (courageValue) courageValue.textContent = scores.courage;
+  if (escapeValue) escapeValue.textContent = scores.escape;
+  if (completionValue) completionValue.textContent = `${scores.completion}%`;
   bossMeter.style.width = `${scores.bossHp}%`;
   bossMeter.dataset.state = scores.bossHp <= 25 ? "weak" : scores.bossHp <= 60 ? "hurt" : "strong";
 }
@@ -1534,7 +1822,7 @@ function renderScores() {
 function getChoiceMeta(choiceType, level) {
   if (choiceType === "brave") {
     return {
-      label: "反向动作",
+      label: "C",
       text: level.brave,
       feedback: level.braveFeedback,
       tone: "brave"
@@ -1542,14 +1830,14 @@ function getChoiceMeta(choiceType, level) {
   }
   if (choiceType === "playful") {
     return {
-      label: "低压绕路",
+      label: "B",
       text: level.playful,
       feedback: level.playfulFeedback,
       tone: "playful"
     };
   }
   return {
-    label: "人格惯性",
+    label: "A",
     text: level.habit,
     feedback: level.habitFeedback,
     tone: "habit"
@@ -1562,62 +1850,80 @@ function renderLevel() {
   const choices = ["habit", "playful", "brave"].map((choiceType) => getChoiceMeta(choiceType, level));
   const feedback = selectedChoice ? getChoiceMeta(selectedChoice, level) : null;
   const nextLabel = currentLevelIndex === currentDungeon.levels.length - 1 ? "生成 RBTI 结果" : "进入下一关";
+  const rbtiCode = currentDungeon.assessment?.code || currentDungeon.profile.id;
+  const meterState = scores.bossHp <= 25 ? "weak" : scores.bossHp <= 60 ? "hurt" : "strong";
+
+  runMbti.textContent = `${rbtiCode}-0${currentLevelIndex + 1} · 第 ${currentLevelIndex + 1} / ${currentDungeon.levels.length} 关`;
+  runState.textContent = feedback ? "刚才这一步" : "选择你的动作";
+  runIntensity.textContent = getRiskLabel(currentDungeon.intensity.id);
 
   levelArea.innerHTML = `
-    <article class="level-card">
-      <div class="meter-card">
-        <div>
-          <span>Boss 血量</span>
-          <div class="boss-meter"><i style="width:${scores.bossHp}%" data-state="${scores.bossHp <= 25 ? "weak" : scores.bossHp <= 60 ? "hurt" : "strong"}"></i></div>
+    <article class="level-card task-play-card ${feedback ? "has-feedback" : ""}">
+      <span class="task-tape level-tape" aria-hidden="true"></span>
+      <span class="task-dot level-dot-a" aria-hidden="true"></span>
+      <span class="task-dot level-dot-b" aria-hidden="true"></span>
+      <span class="warning-mark level-mark" aria-hidden="true">!</span>
+
+      <div class="level-paper">
+        <div class="task-card-topline">
+          <strong>CHALLENGE STEP</strong>
+          <span>${escapeHTML(rbtiCode)}-0${currentLevelIndex + 1}</span>
         </div>
-        <div class="score-strip">
-          <article>
-            <span>勇气值</span>
-            <strong>${scores.courage}</strong>
-          </article>
-          <article>
-            <span>逃避值</span>
-            <strong>${scores.escape}</strong>
-          </article>
-          <article>
-            <span>完成度</span>
-            <strong>${scores.completion}%</strong>
-          </article>
+        <div class="level-status-panel">
+          <div class="level-boss-row">
+            <span>Boss 血量</span>
+            <strong>${scores.bossHp}%</strong>
+          </div>
+          <div class="boss-meter"><i style="width:${scores.bossHp}%" data-state="${meterState}"></i></div>
+          <div class="score-strip">
+            <article>
+              <span>勇气值</span>
+              <strong>${scores.courage}</strong>
+            </article>
+            <article>
+              <span>逃避值</span>
+              <strong>${scores.escape}</strong>
+            </article>
+            <article>
+              <span>完成度</span>
+              <strong>${scores.completion}%</strong>
+            </article>
+          </div>
         </div>
-      </div>
-      <div class="level-topline">
-        <span>第 ${currentLevelIndex + 1} / ${currentDungeon.levels.length} 关</span>
-        <strong>${escapeHTML(level.title)}</strong>
-      </div>
-      <p class="level-scene">${escapeHTML(level.scene)}</p>
-      <div class="option-grid">
-        ${choices
-          .map(
-            (choice) => `
-              <button
-                class="option-button ${selectedChoice === choice.tone ? "is-selected" : ""}"
-                type="button"
-                data-choice="${choice.tone}"
-                ${selectedChoice ? "disabled" : ""}
-              >
-                <span>${choice.label}</span>
-                <strong>${escapeHTML(choice.text)}</strong>
-              </button>
+        <div class="level-topline">
+          <span>第 ${currentLevelIndex + 1} / ${currentDungeon.levels.length} 关</span>
+          <strong>${escapeHTML(level.title)}</strong>
+        </div>
+        <p class="level-scene">${escapeHTML(level.scene)}</p>
+        <div class="option-grid">
+          ${choices
+            .map(
+              (choice) => `
+                <button
+                  class="option-button ${selectedChoice === choice.tone ? "is-selected" : ""}"
+                  type="button"
+                  data-choice="${choice.tone}"
+                  ${selectedChoice ? "disabled" : ""}
+                >
+                  <span>${choice.label}</span>
+                  <strong>${escapeHTML(choice.text)}</strong>
+                </button>
+              `
+            )
+            .join("")}
+        </div>
+        ${
+          feedback
+            ? `
+              <div class="feedback-box ${feedback.tone}">
+                <span>刚才这一步</span>
+                <strong>${escapeHTML(feedback.feedback)}</strong>
+              </div>
+              <button id="nextLevelButton" class="primary-button" type="button">${nextLabel}</button>
             `
-          )
-          .join("")}
+            : "<p class=\"hint-text\">选一个最像你会做的选择。</p>"
+        }
       </div>
-      ${
-        feedback
-          ? `
-            <div class="feedback-box ${feedback.tone}">
-              <span>${feedback.label}</span>
-              <strong>${escapeHTML(feedback.feedback)}</strong>
-            </div>
-            <button id="nextLevelButton" class="primary-button" type="button">${nextLabel}</button>
-          `
-          : "<p class=\"hint-text\">选一个你最可能做的反应，或者直接挑战反向动作。</p>"
-      }
     </article>
   `;
 }
@@ -1682,18 +1988,19 @@ function getResultType() {
 function renderReport() {
   const { profile, baseProfile, state, intensity, boss, nextChallenge, assessment } = currentDungeon;
   const resultType = getResultType();
+  const resultImage = resultTypeImages[resultType.code] || resultTypeImages.ASK;
   const strongRun = scores.courage >= scores.escape + 25;
   const roughRun = scores.escape > scores.courage;
   const title = strongRun ? `你击败了${boss}` : roughRun ? `你看见了${boss}` : `你削弱了${boss}`;
   const assessmentLine = assessment ? `你的人格底色是 ${baseProfile.id}，8 题测评显示今天最该处理的是“${assessment.label}”。` : "";
   const summary = strongRun
-    ? `${assessmentLine}你完成了“${profile.reverseSkill}”的反向动作。`
+    ? `${assessmentLine}你真的做了一次“${profile.reverseSkill}”。`
     : roughRun
       ? `${assessmentLine}你还没有完全反着来，但已经抓到了自己的惯性触发点。`
       : `${assessmentLine}你没有一次性改掉惯性，但已经让它松动了一点。`;
   const basisText = assessment
-    ? `依据：先选择人格底色 ${baseProfile.id}，再由 8 题测评定位到“${assessment.label}”；副本模板按 ${profile.id} / ${state.label} / ${intensity.label} 生成。`
-    : `依据：手动选择 ${profile.id} / ${state.label} / ${intensity.label} 生成副本。`;
+    ? `依据：先选择人格底色 ${baseProfile.id}，再由 8 题测评定位到“${assessment.label}”；挑战按 ${profile.id} / ${state.label} / ${intensity.label} 生成。`
+    : `依据：手动选择 ${profile.id} / ${state.label} / ${intensity.label} 生成挑战。`;
 
   scores.completion = 100;
   renderScores();
@@ -1701,6 +2008,7 @@ function renderReport() {
   reportCard.classList.remove("is-hidden");
   resultCode.textContent = resultType.code;
   resultName.textContent = resultType.name;
+  reportTypeImage.src = resultImage;
   resultLine.textContent = resultType.line;
   reportTitle.textContent = title;
   reportSummary.textContent = summary;
@@ -1792,6 +2100,7 @@ startLevelButton.addEventListener("click", () => {
   showScreen("levelScreen");
 });
 generateFromAssessmentButton.addEventListener("click", () => generateDungeon(true));
+shareAssessmentButton.addEventListener("click", shareAssessment);
 retakeQuizButton.addEventListener("click", () => {
   selectedChallengeMbti = null;
   resetQuiz();
