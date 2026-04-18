@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>今天别做自己 | 反人格副本</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell" aria-label="今天别做自己">
+      <section id="homeScreen" class="screen home-screen is-active" aria-label="首页">
+        <div class="status-row" aria-hidden="true">
+          <span>9:41</span>
+          <span>●●●</span>
+        </div>
+        <div class="home-copy">
+          <h1>今天别做自己</h1>
+          <p>3 分钟，玩出你的今日 RBTI</p>
+        </div>
+        <img class="home-hero" src="./assets/home-hero.png" alt="反人格副本绿色玩具 Boss" />
+        <div class="home-steps" aria-label="玩法三步">
+          <article>
+            <span class="step-icon green-dot"></span>
+            <strong>1. 选人格</strong>
+          </article>
+          <article>
+            <span class="step-icon door-icon"></span>
+            <strong>2. 做测评</strong>
+          </article>
+          <article>
+            <span class="step-icon card-icon"></span>
+            <strong>3. 闯副本</strong>
+          </article>
+        </div>
+        <button id="startButton" class="big-cta" type="button">开始反着来</button>
+      </section>
+
+      <section id="quizScreen" class="screen page-screen" aria-label="RBTI 极速测评">
+        <div class="status-row" aria-hidden="true">
+          <span>9:41</span>
+          <span>●●●</span>
+        </div>
+        <header class="page-header">
+          <button class="icon-button" type="button" data-screen="profileScreen">‹</button>
+          <div>
+            <p>STEP 2</p>
+            <h2>8 题抓出今日惯性</h2>
+          </div>
+        </header>
+
+        <div class="quiz-progress">
+          <span id="quizProgress">1 / 8</span>
+          <div><i id="quizProgressBar"></i></div>
+        </div>
+
+        <article class="quiz-card">
+          <span id="quizDimension" class="quiz-kicker">需求表达</span>
+          <h3 id="quizTitle">别人问你想要什么</h3>
+          <p id="quizScene" class="quiz-scene">你明明有偏好，但担心说出来会麻烦别人。</p>
+          <div id="quizOptions" class="quiz-options" aria-label="测评选项"></div>
+        </article>
+
+        <p class="quiz-note">这不是心理诊断，只用来判断今天最适合打哪个“反人格副本”。</p>
+      </section>
+
+      <section id="assessmentScreen" class="screen page-screen" aria-label="RBTI 测评结论">
+        <div class="status-row" aria-hidden="true">
+          <span>9:41</span>
+          <span>●●●</span>
+        </div>
+        <header class="page-header">
+          <button class="icon-button" type="button" data-screen="profileScreen">‹</button>
+          <div>
+            <p>READY</p>
+            <h2>今日副本入口已定位</h2>
+          </div>
+        </header>
+
+        <article class="assessment-card">
+          <p>RBTI SIGNAL</p>
+          <div class="assessment-type">
+            <span id="assessmentCode">ASKR</span>
+            <strong id="assessmentName">小声开口侠</strong>
+          </div>
+          <h3 id="assessmentDimension">最高惯性：需求表达</h3>
+          <p id="assessmentScore">惯性强度 2 / 2</p>
+          <p id="assessmentCopy">你今天最容易把需求藏进“都可以”，所以副本会从一次低风险表达开始。</p>
+          <div id="assessmentTags" class="tag-row"></div>
+        </article>
+
+        <div class="assessment-actions">
+          <button id="generateFromAssessmentButton" class="big-cta" type="button">生成对应副本</button>
+          <button id="retakeQuizButton" class="ghost-button" type="button">重新测一次</button>
+        </div>
+      </section>
+
+      <section id="profileScreen" class="screen page-screen" aria-label="选择人格">
+        <div class="status-row" aria-hidden="true">
+          <span>9:41</span>
+          <span>●●●</span>
+        </div>
+        <header class="page-header">
+          <button class="icon-button" type="button" data-screen="homeScreen">‹</button>
+          <div>
+            <p>STEP 1</p>
+            <h2>先选择人格底色</h2>
+          </div>
+        </header>
+
+        <div class="mini-hero">
+          <div class="mini-boss" aria-hidden="true">
+            <span></span>
+            <i></i>
+          </div>
+          <div>
+            <span>当前选择</span>
+            <strong id="selectedProfileLabel">INFP</strong>
+            <p>这一步决定你的叙事底色；后面 8 题只判断今天最该反着练哪件事。</p>
+          </div>
+        </div>
+
+        <div id="mbtiGrid" class="choice-grid mbti-grid" aria-label="选择 MBTI"></div>
+        <button id="toSceneButton" class="big-cta sticky-cta" type="button">进入 8 题测评</button>
+      </section>
+
+      <section id="sceneScreen" class="screen page-screen" aria-label="选择今日状态">
+        <div class="status-row" aria-hidden="true">
+          <span>9:41</span>
+          <span>●●●</span>
+        </div>
+        <header class="page-header">
+          <button class="icon-button" type="button" data-screen="profileScreen">‹</button>
+          <div>
+            <p>MANUAL</p>
+            <h2>今天想逃开什么？</h2>
+          </div>
+        </header>
+
+        <section class="form-section">
+          <div class="field-heading">
+            <span>今天的状态</span>
+            <strong id="selectedStateLabel">不想社交</strong>
+          </div>
+          <div id="stateGrid" class="choice-grid state-grid" aria-label="选择今日状态"></div>
+        </section>
+
+        <section class="form-section">
+          <div class="field-heading">
+            <span>挑战强度</span>
+            <strong id="selectedIntensityLabel">来点狠的</strong>
+          </div>
+          <div id="intensityGrid" class="choice-grid intensity-grid" aria-label="选择挑战强度"></div>
+        </section>
+
+        <section class="form-section">
+          <label class="field-label" for="scenarioInput">今天最想逃开的事</label>
+          <textarea id="scenarioInput" rows="4">我想去问导师一个问题，但又怕自己表达不清楚。</textarea>
+          <div class="quick-row" aria-label="快捷场景">
+            <button type="button" data-scenario="我想去问导师一个问题，但又怕自己表达不清楚。">问导师</button>
+            <button type="button" data-scenario="我想把功能做完整，但时间只够交一个 MVP。">先交 MVP</button>
+            <button type="button" data-scenario="我想拒绝一个临时请求，但怕对方不开心。">拒绝别人</button>
+            <button type="button" data-scenario="我想让队友接手，但总觉得还是我来更快。">让队友接手</button>
+          </div>
+        </section>
+
+        <button id="generateButton" class="big-cta sticky-cta" type="button">生成反人格副本</button>
+      </section>
+
+      <section id="dungeonScreen" class="screen page-screen" aria-label="副本封面">
+        <div class="status-row" aria-hidden="true">
+          <span>9:41</span>
+          <span>●●●</span>
+        </div>
+        <header class="page-header">
+          <button class="icon-button" type="button" data-screen="assessmentScreen">‹</button>
+          <div>
+            <p>STEP 3</p>
+            <h2>副本已生成</h2>
+          </div>
+        </header>
+
+        <div id="loadingPanel" class="loading-panel" aria-live="polite">
+          <span></span>
+          <strong>AI 正在拆解你的惯性动作</strong>
+          <p>识别人格偏好、今日场景和可完成的一小步。</p>
+        </div>
+
+        <article id="dungeonCard" class="dungeon-card">
+          <div class="dungeon-visual">
+            <img id="dungeonImage" alt="副本场景图" />
+            <div class="boss-chip">
+              <span>今日 Boss</span>
+              <strong id="bossName">假装随便</strong>
+            </div>
+          </div>
+          <div class="dungeon-copy">
+            <p>DUNGEON BRIEF</p>
+            <h2 id="dungeonName">便利店开口试炼</h2>
+            <span id="dungeonGoal">主动表达一个具体需求。</span>
+            <div id="dungeonTags" class="tag-row"></div>
+          </div>
+        </article>
+
+        <div class="meter-card" aria-label="副本状态">
+          <div>
+            <span>Boss 血量</span>
+            <div class="boss-meter"><i id="bossMeter"></i></div>
+          </div>
+          <div class="score-strip">
+            <article>
+              <span>勇气值</span>
+              <strong id="courageValue">0</strong>
+            </article>
+            <article>
+              <span>逃避值</span>
+              <strong id="escapeValue">0</strong>
+            </article>
+            <article>
+              <span>完成度</span>
+              <strong id="completionValue">0%</strong>
+            </article>
+          </div>
+        </div>
+
+        <button id="startLevelButton" class="big-cta sticky-cta" type="button">进入第 1 关</button>
+      </section>
+
+      <section id="levelScreen" class="screen page-screen" aria-label="闯关">
+        <div class="status-row" aria-hidden="true">
+          <span>9:41</span>
+          <span>●●●</span>
+        </div>
+        <header class="page-header compact-header">
+          <button class="icon-button" type="button" data-screen="dungeonScreen">‹</button>
+          <div>
+            <p id="runMbti">INFP</p>
+            <h2 id="runState">不想社交</h2>
+          </div>
+          <span id="runIntensity" class="pill">来点狠的</span>
+        </header>
+        <div id="levelArea" class="level-area" aria-live="polite"></div>
+      </section>
+
+      <section id="resultScreen" class="screen page-screen result-screen" aria-label="RBTI 结果">
+        <div class="status-row" aria-hidden="true">
+          <span>9:41</span>
+          <span>●●●</span>
+        </div>
+        <div id="reportEmpty" class="is-hidden"></div>
+        <article id="reportCard" class="report-card is-hidden">
+          <p>YOUR RBTI</p>
+          <div class="type-card">
+            <span id="resultCode">ASKR</span>
+            <strong id="resultName">小声开口侠</strong>
+            <em id="resultLine">嘴上说随便，心里已经写好需求文档。</em>
+          </div>
+          <h2 id="reportTitle">你击败了假装随便</h2>
+          <p id="reportSummary">你完成了一次主动表达需求的小练习。</p>
+          <p id="basisLine" class="basis-line">依据：8 题极速测评定位到“需求表达”卡点。</p>
+          <div class="report-stats">
+            <div>
+              <span>人格惯性</span>
+              <strong id="reportWeakness">把需求藏进“都可以”</strong>
+            </div>
+            <div>
+              <span>通关技能</span>
+              <strong id="reportSkill">主动说出一个小需求</strong>
+            </div>
+            <div>
+              <span>明日副本</span>
+              <strong id="reportNext">向朋友明确提出一个请求</strong>
+            </div>
+          </div>
+          <p id="resultRoast" class="result-roast">今日嘴替：你不是没有需求，你只是把需求藏得太有礼貌。</p>
+          <blockquote id="shareLine">我的今日 RBTI：ASKR 小声开口侠。</blockquote>
+          <div class="result-actions">
+            <button type="button" class="ghost-button" data-screen="homeScreen">回首页</button>
+            <button id="rerunButton" class="big-cta" type="button">再来一局</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
