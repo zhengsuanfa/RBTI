@@ -360,6 +360,21 @@ em {
   transition: width 180ms ease;
 }
 
+.quiz-progress .scan-dots i {
+  width: 100%;
+  height: 8px;
+  background: rgba(17, 17, 17, 0.08);
+}
+
+.quiz-progress .scan-dots i.is-done {
+  background: rgba(85, 195, 0, 0.52);
+}
+
+.quiz-progress .scan-dots i.is-current {
+  background: var(--green-deep);
+  box-shadow: 0 0 0 3px rgba(158, 234, 35, 0.18);
+}
+
 .quiz-card {
   display: grid;
   gap: 12px;
@@ -1828,6 +1843,17 @@ textarea {
 .report-card {
   width: 100%;
   padding: 16px;
+}
+
+.report-type-image {
+  width: 100%;
+  height: 180px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 8px;
+  margin-bottom: 12px;
 }
 
 .report-card h2 {

@@ -1576,11 +1576,12 @@ function renderAssessment() {
   const confidence = getAssessmentConfidence(assessmentResult);
   const interpretation =
     assessmentInterpretations[assessmentResult.resultType] || assessmentInterpretations[assessmentResult.id] || assessmentInterpretations.default;
-  const assessmentImage = resultTypeImages[assessmentResult.code] || resultTypeImages.ASK;
+  const assessmentImage = getResultTypeImage(assessmentResult.code);
 
   assessmentPosterName.textContent = assessmentResult.name;
   assessmentPosterCode.textContent = assessmentResult.code;
   assessmentPosterImage.src = assessmentImage;
+  assessmentPosterImage.alt = `${assessmentResult.code} ${assessmentResult.name} 人格结果图`;
   assessmentPosterLine.textContent = assessmentResult.line;
   assessmentCode.textContent = assessmentResult.code;
   assessmentName.textContent = assessmentResult.name;
@@ -2000,7 +2001,7 @@ function getResultType() {
 function renderReport() {
   const { profile, baseProfile, state, intensity, boss, nextChallenge, assessment } = currentDungeon;
   const resultType = getResultType();
-  const resultImage = resultTypeImages[resultType.code] || resultTypeImages.ASK;
+  const resultImage = getResultTypeImage(resultType.code);
   const strongRun = scores.courage >= scores.escape + 25;
   const roughRun = scores.escape > scores.courage;
   const title = strongRun ? `你击败了${boss}` : roughRun ? `你看见了${boss}` : `你削弱了${boss}`;
@@ -2021,6 +2022,7 @@ function renderReport() {
   resultCode.textContent = resultType.code;
   resultName.textContent = resultType.name;
   reportTypeImage.src = resultImage;
+  reportTypeImage.alt = `${resultType.code} ${resultType.name} 人格结果图`;
   resultLine.textContent = resultType.line;
   reportTitle.textContent = title;
   reportSummary.textContent = summary;
