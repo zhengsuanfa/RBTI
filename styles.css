@@ -1848,7 +1848,7 @@ textarea {
 }
 
 .result-screen {
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .report-card {
@@ -1997,13 +1997,26 @@ blockquote {
   }
 
   .app-shell {
+    height: min(860px, calc(100vh - 48px));
     min-height: 860px;
     border: 10px solid #111111;
     border-radius: 44px;
+    overflow: hidden;
   }
 
   .screen {
-    min-height: 840px;
+    height: 100%;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .screen::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
 }
 
@@ -2027,6 +2040,8 @@ blockquote {
   }
 
   .app-shell {
+    height: 860px;
+    min-height: 0;
     margin: 0;
     justify-self: start;
   }
@@ -2208,6 +2223,26 @@ blockquote {
     font-size: 1.04rem;
     line-height: 1.25;
     font-weight: 950;
+  }
+
+  .desktop-qr-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .desktop-qr-heading a {
+    flex: 0 1 auto;
+    padding: 6px 8px;
+    border: 1px solid rgba(17, 17, 17, 0.16);
+    border-radius: 8px;
+    color: #111111;
+    background: rgba(255, 255, 255, 0.74);
+    font-size: 0.72rem;
+    line-height: 1;
+    font-weight: 950;
+    text-decoration: none;
   }
 
   .desktop-steps-panel p,

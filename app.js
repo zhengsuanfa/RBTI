@@ -849,7 +849,7 @@ const assessmentDimensions = {
     state: "social",
     intensity: "normal",
     resultType: "social",
-    scenario: "我想去问导师一个问题，但又怕自己表达不清楚。",
+    scenario: "我想在便利店买一杯热饮，但货架上没有想要的口味，又不好意思开口问店员。",
     description: "你今天最容易把想法藏进“都可以”。挑战会从一次低风险开口开始。",
     tags: ["表达", "请求", "低风险社交"]
   },
@@ -1369,7 +1369,9 @@ const rerunButton = $("rerunButton");
 
 function showScreen(screenId) {
   screens.forEach((screen) => {
-    screen.classList.toggle("is-active", screen.id === screenId);
+    const isActive = screen.id === screenId;
+    screen.classList.toggle("is-active", isActive);
+    if (isActive) screen.scrollTop = 0;
   });
   appShell.classList.remove("is-challenge-mode");
   window.scrollTo({ top: 0, behavior: "auto" });
