@@ -1893,6 +1893,31 @@ textarea {
   font-weight: 850;
 }
 
+.report-base-reading {
+  margin-top: 10px;
+  padding: 12px;
+  color: #111111;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 8px;
+}
+
+.report-base-reading span {
+  display: block;
+  margin-bottom: 6px;
+  color: #667085;
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.report-base-reading p {
+  margin: 0;
+  color: #3f453f;
+  line-height: 1.65;
+  font-size: 0.93rem;
+  font-weight: 800;
+}
+
 .type-card {
   padding: 16px;
   color: #111111;

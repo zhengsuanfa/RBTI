@@ -958,6 +958,89 @@ const assessmentInterpretations = {
     "RBTI 的重点不是给你盖章，而是抓住今天最容易重复的动作。你还是你，只是系统帮你把旧习惯标红，然后给出一个能反着试的小任务。"
 };
 
+const mbtiBaseReadings = {
+  INFP: {
+    base: "你的底色通常很重视感受和意义，很多想法会先在心里排练很久。",
+    shift: "所以这个状态对你来说，常常不是没主见，而是怕自己的表达打扰别人。",
+    action: "你的反着来不需要突然强势，只要把一个小需求说到别人能听懂。"
+  },
+  INFJ: {
+    base: "你的底色很会读空气，容易先捕捉别人的情绪，再处理自己的选择。",
+    shift: "所以这个状态对你来说，常常是共情开太大，自己的需求被自动静音。",
+    action: "你的反着来是先确认自己想要什么，再决定要不要照顾气氛。"
+  },
+  INTP: {
+    base: "你的底色习惯先理解逻辑、补齐变量，再允许自己开始行动。",
+    shift: "所以这个状态对你来说，容易表现成脑内已经完成推演，现实还在等待第一步。",
+    action: "你的反着来是先交一个能跑的版本，再把解释和优化慢慢补上。"
+  },
+  INTJ: {
+    base: "你的底色会先搭框架、看长期路径，不太喜欢没有掌控感的推进。",
+    shift: "所以这个状态对你来说，常常是计划感过强，临时变化会被你视为系统故障。",
+    action: "你的反着来是接受一个 80 分方案先运行，让现实帮你验证下一步。"
+  },
+  ISFP: {
+    base: "你的底色更相信真实感受和当下状态，不喜欢太早被一个选择锁死。",
+    shift: "所以这个状态对你来说，常常不是逃避责任，而是不想让一个决定压扁感觉。",
+    action: "你的反着来是给直觉一个截止时间，选一个就让它先落地。"
+  },
+  ISFJ: {
+    base: "你的底色很重视关系和可靠感，别人开口之前你已经开始准备接住。",
+    shift: "所以这个状态对你来说，常常是好人模式启动太快，自己的负荷被排到后面。",
+    action: "你的反着来是把帮助范围说清楚，拒绝任务但不拒绝关系。"
+  },
+  ISTP: {
+    base: "你的底色更习惯直接处理问题，用行动证明判断，解释通常放在后面。",
+    shift: "所以这个状态对你来说，容易变成别人只看见结果，却听不见你的判断过程。",
+    action: "你的反着来是把关键理由说出来，让别人能复用你的判断。"
+  },
+  ISTJ: {
+    base: "你的底色重视秩序、规则和可执行路径，稳定会给你安全感。",
+    shift: "所以这个状态对你来说，常常是旧计划还在发光，新现实已经换了地图。",
+    action: "你的反着来是把规则服务于目标，而不是让目标迁就旧规则。"
+  },
+  ENFP: {
+    base: "你的底色很容易被新鲜连接点点亮，脑内经常同时开好几个窗口。",
+    shift: "所以这个状态对你来说，常常不是不专注，而是灵感来得太有礼貌，非要插队。",
+    action: "你的反着来是给灵感排号，先把当前主线跑完。"
+  },
+  ENFJ: {
+    base: "你的底色很会看见团队状态，也很容易把别人的进度和情绪纳入自己责任。",
+    shift: "所以这个状态对你来说，常常是支持别人支持到把任务也接了过来。",
+    action: "你的反着来是给支持加边界，把责任还给本人。"
+  },
+  ENTP: {
+    base: "你的底色反应很快，擅长看见漏洞，也擅长把观点拆开重组。",
+    shift: "所以这个状态对你来说，常常不是不会表达，而是表达太快，别人先听见了反驳。",
+    action: "你的反着来是先接住一个有效点，再把你的判断放出来。"
+  },
+  ENTJ: {
+    base: "你的底色天然会看目标、抓效率，现场慢下来时很容易自动接管。",
+    shift: "所以这个状态对你来说，常常不是不信任别人，而是太习惯把进度扛在自己手里。",
+    action: "你的反着来是只给边界和验收标准，把过程真的交出去一点。"
+  },
+  ESFP: {
+    base: "你的底色很吃现场反馈，能量、热闹和即时刺激会迅速把你点燃。",
+    shift: "所以这个状态对你来说，常常是主线还没结束，注意力已经被新的刺激招走。",
+    action: "你的反着来是先完成一个短任务，再把热闹当奖励。"
+  },
+  ESFJ: {
+    base: "你的底色很会照顾现场感受，也很容易把所有人的舒服程度当成自己的任务。",
+    shift: "所以这个状态对你来说，常常是别人还没求救，你已经进入全场客服模式。",
+    action: "你的反着来是把自己也算进团队，不再包圆所有情绪。"
+  },
+  ESTP: {
+    base: "你的底色相信行动会给答案，遇到机会时更愿意先上手再调整。",
+    shift: "所以这个状态对你来说，常常是油门反应太灵敏，安全绳来得慢半拍。",
+    action: "你的反着来是在冲之前补三秒判断，让冒险变得可回滚。"
+  },
+  ESTJ: {
+    base: "你的底色看重标准、结果和执行效率，混乱场面会让你想马上定规矩。",
+    shift: "所以这个状态对你来说，常常是要求很清楚，但语气容易像红牌一样飞出去。",
+    action: "你的反着来是保留标准，把命令换成别人能接住的请求。"
+  }
+};
+
 const dimensionMeta = {
   express: {
     code: "R1",
@@ -1317,6 +1400,7 @@ const assessmentScore = $("assessmentScore");
 const assessmentCopy = $("assessmentCopy");
 const assessmentTags = $("assessmentTags");
 const assessmentInterpretation = $("assessmentInterpretation");
+const assessmentBaseReading = $("assessmentBaseReading");
 const assessmentDimensionList = $("assessmentDimensionList");
 const shareAssessmentButton = $("shareAssessmentButton");
 const generateFromAssessmentButton = $("generateFromAssessmentButton");
@@ -1360,6 +1444,7 @@ const resultLine = $("resultLine");
 const reportTitle = $("reportTitle");
 const reportSummary = $("reportSummary");
 const basisLine = $("basisLine");
+const reportBaseReading = $("reportBaseReading");
 const reportWeakness = $("reportWeakness");
 const reportSkill = $("reportSkill");
 const reportNext = $("reportNext");
@@ -1407,6 +1492,22 @@ function getAssessmentConfidence(result) {
     return "维度命中度较高，当前结果可视为你的今日主要人格画像。";
   }
   return "维度命中度中等，当前结果更适合当作今天的行动提醒。";
+}
+
+function getMbtiStateReading(baseProfile, resultType, assessment) {
+  const reading = mbtiBaseReadings[baseProfile.id] || {
+    base: `${baseProfile.id} 的底色会影响你处理问题的入口。`,
+    shift: "所以同一个今日状态，放在不同人格底色里会呈现出不同原因。",
+    action: "你的反着来是先看见旧习惯，再补一个新的小动作。"
+  };
+  const resultName = `${resultType.code} ${resultType.name}`;
+  const stateLabel = assessment?.label || resultType.name;
+  const challengeProfile = assessment ? profiles.find((profile) => profile.id === assessment.challengeMbti) : null;
+  const challengeLine = challengeProfile
+    ? `系统把挑战落到 ${challengeProfile.id} ${challengeProfile.nickname} 的模板，是为了让你临时练一次“${challengeProfile.reverseSkill}”。`
+    : `系统会沿着 ${baseProfile.id} ${baseProfile.nickname} 的底色，给你一个“${baseProfile.reverseSkill}”的小动作。`;
+
+  return `${baseProfile.id} ${baseProfile.nickname}：${reading.base} 这次出现“${resultName}”，说明今天被放大的卡点是“${stateLabel}”。${reading.shift}${challengeLine}${reading.action}`;
 }
 
 function getProfile() {
@@ -1606,6 +1707,11 @@ function renderAssessment() {
   const confidence = getAssessmentConfidence(assessmentResult);
   const interpretation =
     assessmentInterpretations[assessmentResult.resultType] || assessmentInterpretations[assessmentResult.id] || assessmentInterpretations.default;
+  const assessmentType = resultTypes[assessmentResult.resultType] || {
+    code: assessmentResult.code,
+    name: assessmentResult.name,
+    line: assessmentResult.line
+  };
   const assessmentImage = getResultTypeImage(assessmentResult.code);
 
   assessmentPosterName.textContent = assessmentResult.name;
@@ -1630,6 +1736,7 @@ function renderAssessment() {
     .map((tag) => `<span>${escapeHTML(tag)}</span>`)
     .join("");
   assessmentInterpretation.textContent = interpretation;
+  assessmentBaseReading.textContent = getMbtiStateReading(baseProfile, assessmentType, assessmentResult);
   assessmentDimensionList.innerHTML = assessmentResult.dimensionScores
     .map((item) => {
       const meta = dimensionMeta[item.id];
@@ -2059,6 +2166,7 @@ function renderReport() {
   reportTitle.textContent = title;
   reportSummary.textContent = summary;
   basisLine.textContent = basisText;
+  reportBaseReading.textContent = getMbtiStateReading(baseProfile, resultType, assessment);
   reportWeakness.textContent = profile.inertia;
   reportSkill.textContent = profile.reverseSkill;
   reportNext.textContent = nextChallenge;
