@@ -410,8 +410,8 @@ em {
   display: grid;
   place-items: center;
   color: #111;
-  background: var(--accent);
-  border: 1px solid color-mix(in srgb, var(--tone), #111 20%);
+  background: var(--green);
+  border: 1px solid rgba(17, 17, 17, 0.12);
   border-radius: 50%;
   font-weight: 950;
 }
@@ -422,18 +422,10 @@ em {
   font-weight: 900;
 }
 
-.option-button em {
-  grid-column: 2;
-  color: color-mix(in srgb, var(--tone), #111 15%);
-  font-size: 0.82rem;
-  font-style: normal;
-  font-weight: 950;
-}
-
 .option-button.is-selected {
   transform: translateY(-2px);
-  border-color: var(--tone);
-  background: color-mix(in srgb, var(--accent), white 38%);
+  border-color: #55c300;
+  background: rgba(158, 234, 35, 0.18);
 }
 
 .answer-hint {

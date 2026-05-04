@@ -122,16 +122,14 @@ function renderQuiz() {
   answerHint.textContent = "";
   optionList.classList.remove("is-locked");
   optionList.innerHTML = question.options
-    .map((option) => {
-      const animal = animalMap[option.animal];
-      return `
-        <button class="option-button" type="button" data-option="${option.label}" style="--tone:${animal.tone};--accent:${animal.accent}">
+    .map(
+      (option) => `
+        <button class="option-button" type="button" data-option="${option.label}">
           <span>${option.label}</span>
           <strong>${escapeHTML(option.text)}</strong>
-          <em>${animal.emoji} ${escapeHTML(animal.name)}</em>
         </button>
-      `;
-    })
+      `
+    )
     .join("");
 }
 
@@ -181,10 +179,9 @@ function answerQuestion(label) {
     animal: option.animal
   });
 
-  const animal = animalMap[option.animal];
   optionList.classList.add("is-locked");
   optionList.querySelector(`[data-option="${label}"]`)?.classList.add("is-selected");
-  answerHint.textContent = `已抽入 ${animal.emoji} ${animal.name} 的能量碎片`;
+  answerHint.textContent = "已记录这次直觉选择";
   answerHint.classList.add("is-visible");
 
   window.setTimeout(() => {
