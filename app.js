@@ -24,8 +24,6 @@ const answerHint = $("answerHint");
 const resultHeading = $("resultHeading");
 const resultSubline = $("resultSubline");
 const resultCards = $("resultCards");
-const answerPath = $("answerPath");
-const scoreList = $("scoreList");
 const partOne = $("partOne");
 const partTwo = $("partTwo");
 const unlockDeepButton = $("unlockDeepButton");
@@ -223,34 +221,12 @@ function renderResult() {
     ? `出现并列最高分，系统从 ${latestResult.winners.length} 个并列结果里稳定抽出 2 张展示。`
     : `最高分 ${latestResult.maxScore} 分，已解锁 1 张灵魂动物卡。`;
   resultCards.innerHTML = latestResult.animals.map((animal, index) => renderAnimalCard(animal, index, latestResult.animals.length)).join("");
-  answerPath.textContent = latestResult.path;
-  renderScores(latestResult);
   renderPartOne(latestResult.animals);
   renderPartTwo(latestResult.animals);
   unlockDeepButton.hidden = false;
   partTwo.classList.toggle("is-locked", !deepUnlocked);
   unlockDeepButton.textContent = deepUnlocked ? "灵魂暗码已解锁" : "点击解锁灵魂暗码";
   shareButton.textContent = "复制结果文案";
-}
-
-function renderScores(result) {
-  const ranked = animalOrder
-    .map((id) => ({ ...animalMap[id], score: result.scores[id] }))
-    .sort((a, b) => b.score - a.score || animalOrder.indexOf(a.id) - animalOrder.indexOf(b.id));
-
-  scoreList.innerHTML = ranked
-    .map((animal) => {
-      const width = `${Math.round((animal.score / data.questions.length) * 100)}%`;
-      const active = result.displayIds.includes(animal.id) ? "is-winner" : "";
-      return `
-        <article class="score-item ${active}" style="--tone:${animal.tone};--accent:${animal.accent}">
-          <span>${animal.emoji} ${escapeHTML(animal.name)}</span>
-          <i><b style="width:${width}"></b></i>
-          <strong>${animal.score}</strong>
-        </article>
-      `;
-    })
-    .join("");
 }
 
 function renderPartOne(animals) {

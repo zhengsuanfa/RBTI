@@ -113,7 +113,6 @@ em {
 
 .hero-card,
 .question-card,
-.score-card,
 .detail-card,
 .collection-summary {
   border: 1px solid var(--line);
@@ -334,8 +333,7 @@ em {
   font-weight: 950;
 }
 
-.progress-panel i,
-.score-item i {
+.progress-panel i {
   height: 12px;
   overflow: hidden;
   display: block;
@@ -343,8 +341,7 @@ em {
   border-radius: 999px;
 }
 
-.progress-panel b,
-.score-item b {
+.progress-panel b {
   display: block;
   height: 100%;
   background: linear-gradient(90deg, #55c300, var(--green));
@@ -541,7 +538,6 @@ em {
   font-weight: 900;
 }
 
-.score-card,
 .detail-card {
   display: grid;
   gap: 12px;
@@ -551,39 +547,6 @@ em {
 .section-title strong {
   font-size: 0.96rem;
   font-weight: 950;
-}
-
-.score-list {
-  display: grid;
-  gap: 9px;
-}
-
-.score-item {
-  display: grid;
-  grid-template-columns: minmax(92px, 1fr) 1.4fr 28px;
-  align-items: center;
-  gap: 9px;
-}
-
-.score-item span {
-  font-size: 0.84rem;
-  font-weight: 900;
-}
-
-.score-item strong {
-  text-align: right;
-  font-weight: 950;
-}
-
-.score-item b {
-  background: var(--tone);
-}
-
-.score-item.is-winner {
-  padding: 7px;
-  margin: -7px;
-  background: color-mix(in srgb, var(--accent), white 30%);
-  border-radius: 8px;
 }
 
 .reading-list {
