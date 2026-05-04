@@ -3,429 +3,147 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>今天别做自己 | RBTI 挑战</title>
+    <title>SATI 灵魂动物抽卡</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="desktop-layout">
-    <main class="app-shell" aria-label="今天别做自己">
+    <main class="app-shell" aria-label="SATI 灵魂动物抽卡">
       <section id="homeScreen" class="screen home-screen is-active" aria-label="首页">
-        <div class="status-row" aria-hidden="true">
-          <span>9:41</span>
-          <span>●●●</span>
-        </div>
-        <div class="home-copy">
-          <h1>今天别做自己</h1>
-          <p>8 题测出今天的你，马上生成反着来挑战</p>
-        </div>
-        <div id="homeModel" class="home-model" aria-label="可旋转的 RBTI 绿色吉祥物">
-          <canvas id="homeModelCanvas"></canvas>
-          <div class="home-model-loader" aria-live="polite">
-            <i aria-hidden="true"></i>
-            <span id="homeModelStatus">吉祥物正在登场</span>
+        <nav class="topbar">
+          <strong>SATI</strong>
+          <button class="text-button" type="button" data-screen="collectionScreen">图鉴</button>
+        </nav>
+
+        <div class="hero-card">
+          <p class="eyebrow">SOUL ANIMAL TEST INDEX</p>
+          <h1>测你今天最像什么动物</h1>
+          <p>8 道直觉题，抽出你的灵魂动物卡。高分并列时，会生成双卡混合灵魂。</p>
+          <div class="hero-orbit" aria-hidden="true">
+            <span>🐱</span>
+            <span>🦊</span>
+            <span>🦉</span>
+            <span>🦁</span>
+            <span>🐬</span>
           </div>
         </div>
-        <div class="home-steps" aria-label="玩法三步">
+
+        <div class="stat-grid" aria-label="当前收集进度">
           <article>
-            <img class="step-image" src="./assets/step-profile.png" alt="" aria-hidden="true" />
-            <strong>1. 选人格</strong>
+            <span>题目</span>
+            <strong id="homeQuestionCount">8</strong>
           </article>
           <article>
-            <img class="step-image" src="./assets/step-today.png" alt="" aria-hidden="true" />
-            <strong>2. 测今天</strong>
+            <span>图鉴</span>
+            <strong><b id="homeUnlockedCount">0</b>/12</strong>
           </article>
           <article>
-            <img class="step-image" src="./assets/step-challenge.png" alt="" aria-hidden="true" />
-            <strong>3. 接挑战</strong>
+            <span>机制</span>
+            <strong>最高分</strong>
           </article>
         </div>
-        <button id="startButton" class="big-cta" type="button">开始反着来</button>
-      </section>
 
-      <section id="quizScreen" class="screen page-screen" aria-label="RBTI 极速测评">
-        <div class="status-row" aria-hidden="true">
-          <span>9:41</span>
-          <span>●●●</span>
-        </div>
-        <header class="page-header">
-          <button id="quizBackButton" class="icon-button" type="button" aria-label="返回上一题">‹</button>
-          <div>
-            <p>STEP 2</p>
-            <h2>8 题看看今天的你</h2>
-          </div>
-        </header>
+        <div id="homePreview" class="preview-row" aria-label="已解锁卡片预览"></div>
 
-        <div class="quiz-progress">
-          <div class="scan-progress-top">
-            <span id="quizProgress">1 / 8</span>
-            <strong>RBTI SCAN</strong>
-          </div>
-          <div id="quizScanDots" class="scan-dots" aria-hidden="true"></div>
-          <div><i id="quizProgressBar"></i></div>
-        </div>
-
-        <article class="quiz-card quiz-scan-card">
-          <div class="quiz-scan-topline">
-            <strong>RBTI SCAN</strong>
-            <span id="quizScanCode">R1</span>
-          </div>
-          <div class="quiz-kicker-row">
-            <span id="quizDimension" class="quiz-kicker">正在检测：不说需求</span>
-            <em id="quizScanStatus">扫描 1 / 8</em>
-          </div>
-          <h3 id="quizTitle">别人问你想要什么</h3>
-          <p id="quizScene" class="quiz-scene">你明明有偏好，但担心说出来会麻烦别人。</p>
-          <div id="quizOptions" class="quiz-options" aria-label="测评选项"></div>
-          <p id="quizReaction" class="quiz-reaction" aria-live="polite"></p>
-        </article>
-
-        <p class="quiz-note">凭第一反应选，不用想太久。</p>
-      </section>
-
-      <section id="assessmentScreen" class="screen page-screen" aria-label="RBTI 测评结论">
-        <div class="status-row" aria-hidden="true">
-          <span>9:41</span>
-          <span>●●●</span>
-        </div>
-        <header class="page-header">
-          <button class="icon-button" type="button" data-screen="profileScreen">‹</button>
-          <div>
-            <p>READY</p>
-            <h2>你的今日 RBTI 出来了</h2>
-          </div>
-        </header>
-
-        <article class="assessment-poster-card">
-          <div class="assessment-poster">
-            <div>
-              <span>你的人格类型是</span>
-              <strong id="assessmentPosterName">都可以本人</strong>
-              <em id="assessmentPosterCode">ASK</em>
-            </div>
-            <img id="assessmentPosterImage" src="./assets/result-types/ASK.jpg" alt="RBTI 吉祥物结果图" />
-            <p id="assessmentPosterLine">嘴上说随便，心里其实有一个很明确的想法。</p>
-          </div>
-          <button id="shareAssessmentButton" class="share-button" type="button">分享测试结果</button>
-          <p class="reentry-tip">在抖音搜索【今天别做自己】重新进入本页面</p>
-        </article>
-
-        <article class="assessment-card">
-          <p>你的主类型</p>
-          <div class="assessment-type">
-            <span id="assessmentCode">ASK</span>
-            <strong id="assessmentName">都可以本人</strong>
-          </div>
-          <h3 id="assessmentDimension">今天最像：不说需求</h3>
-          <p id="assessmentScore">匹配度 70% · 精准命中 1/8 维</p>
-          <p id="assessmentCopy">维度命中度较高，当前结果可视为你的今日第一人格画像。</p>
-          <div id="assessmentTags" class="tag-row"></div>
-        </article>
-
-        <article class="assessment-detail-card">
-          <h3>该人格的简单解读</h3>
-          <p id="assessmentInterpretation">你不是没有想法，只是习惯先把想法放进静音模式。</p>
-        </article>
-
-        <article class="assessment-detail-card">
-          <h3>你的底色 × 今日状态</h3>
-          <p id="assessmentBaseReading">INFP 的底色会让这个结果更像一次温柔退让，而不是单纯没主见。</p>
-        </article>
-
-        <article class="assessment-detail-card">
-          <h3>八维度评分</h3>
-          <div id="assessmentDimensionList" class="dimension-list"></div>
-        </article>
-
-        <article class="assessment-detail-card compact-note">
-          <h3>友情提示</h3>
-          <p>本测试仅供娱乐和自我观察，别拿它当诊断、面试、相亲、分手或人生判决书。</p>
-        </article>
-
-        <div class="assessment-actions">
-          <button id="generateFromAssessmentButton" class="big-cta" type="button">进入挑战</button>
-          <button id="retakeQuizButton" class="ghost-button" type="button">重新测一次</button>
+        <div class="action-stack">
+          <button id="startButton" class="primary-button" type="button">开始抽卡</button>
+          <button class="secondary-button" type="button" data-screen="collectionScreen">查看灵魂图鉴</button>
         </div>
       </section>
 
-      <section id="profileScreen" class="screen page-screen" aria-label="选择人格">
-        <div class="status-row" aria-hidden="true">
-          <span>9:41</span>
-          <span>●●●</span>
-        </div>
+      <section id="quizScreen" class="screen page-screen" aria-label="SATI 测试题">
         <header class="page-header">
-          <button class="icon-button" type="button" data-screen="homeScreen">‹</button>
+          <button class="icon-button" type="button" data-screen="homeScreen" aria-label="返回首页">‹</button>
           <div>
-            <p>STEP 1</p>
-            <h2>先选择人格底色</h2>
+            <p>SATI SCAN</p>
+            <h2>凭第一反应选择</h2>
           </div>
         </header>
 
-        <div class="mini-hero">
-          <div class="mini-boss" aria-hidden="true">
-            <span></span>
-            <i></i>
-          </div>
+        <div class="progress-panel">
           <div>
-            <span>当前选择</span>
-            <strong id="selectedProfileLabel">INFP</strong>
-            <p>先选一个最像你的底色，后面再看今天会卡在哪。</p>
+            <span id="quizProgressText">1 / 8</span>
+            <strong id="quizProgressPercent">13%</strong>
           </div>
+          <i><b id="quizProgressBar"></b></i>
         </div>
 
-        <div id="mbtiGrid" class="choice-grid mbti-grid" aria-label="选择 MBTI"></div>
-        <button id="toSceneButton" class="big-cta sticky-cta" type="button">进入 8 题测评</button>
+        <article class="question-card">
+          <span id="questionCode" class="card-code">Q1</span>
+          <h3 id="questionTitle"></h3>
+          <div id="optionList" class="option-list" aria-label="选项"></div>
+          <p id="answerHint" class="answer-hint" aria-live="polite"></p>
+        </article>
       </section>
 
-      <section id="sceneScreen" class="screen page-screen" aria-label="选择今日状态">
-        <div class="status-row" aria-hidden="true">
-          <span>9:41</span>
-          <span>●●●</span>
-        </div>
+      <section id="resultScreen" class="screen page-screen" aria-label="抽卡结果">
         <header class="page-header">
-          <button class="icon-button" type="button" data-screen="profileScreen">‹</button>
+          <button class="icon-button" type="button" data-screen="homeScreen" aria-label="返回首页">‹</button>
           <div>
-            <p>MANUAL</p>
-            <h2>今天想逃开什么？</h2>
+            <p>REVEAL</p>
+            <h2 id="resultHeading">你的灵魂动物卡</h2>
           </div>
         </header>
 
-        <section class="form-section">
-          <div class="field-heading">
-            <span>今天的状态</span>
-            <strong id="selectedStateLabel">不想社交</strong>
-          </div>
-          <div id="stateGrid" class="choice-grid state-grid" aria-label="选择今日状态"></div>
+        <section class="result-stage">
+          <p id="resultSubline" class="result-subline"></p>
+          <div id="resultCards" class="result-cards"></div>
         </section>
 
-        <section class="form-section">
-          <div class="field-heading">
-            <span>挑战强度</span>
-            <strong id="selectedIntensityLabel">来点狠的</strong>
+        <section class="score-card">
+          <div class="section-title">
+            <span>计分轨迹</span>
+            <strong id="answerPath">-</strong>
           </div>
-          <div id="intensityGrid" class="choice-grid intensity-grid" aria-label="选择挑战强度"></div>
+          <div id="scoreList" class="score-list"></div>
         </section>
 
-        <section class="form-section">
-          <label class="field-label" for="scenarioInput">今天最容易卡住的事</label>
-          <textarea id="scenarioInput" rows="4">我想在便利店买一杯热饮，但货架上没有想要的口味，又不好意思开口问店员。</textarea>
-          <div class="quick-row" aria-label="快捷场景">
-            <button type="button" data-scenario="我想在便利店买一杯热饮，但货架上没有想要的口味，又不好意思开口问店员。">买热饮</button>
-            <button type="button" data-scenario="我想把功能做完整，但时间只够交一个 MVP。">先交 MVP</button>
-            <button type="button" data-scenario="我想拒绝一个临时请求，但怕对方不开心。">拒绝别人</button>
-            <button type="button" data-scenario="我想让队友接手，但总觉得还是我来更快。">让队友接手</button>
+        <section class="detail-card">
+          <div class="section-title">
+            <span>Part 1</span>
+            <strong>灵魂速写</strong>
           </div>
+          <div id="partOne" class="reading-list"></div>
         </section>
 
-        <button id="generateButton" class="big-cta sticky-cta" type="button">生成挑战</button>
+        <section class="detail-card">
+          <div class="section-title">
+            <span>Part 2</span>
+            <strong>深度解析</strong>
+          </div>
+          <button id="unlockDeepButton" class="secondary-button compact" type="button">点击解锁灵魂暗码</button>
+          <div id="partTwo" class="reading-list is-locked"></div>
+        </section>
+
+        <div class="action-stack">
+          <button id="openCollectionButton" class="primary-button" type="button">查看图鉴</button>
+          <button id="shareButton" class="secondary-button" type="button">复制结果文案</button>
+          <button id="retryButton" class="ghost-button" type="button">再测一次</button>
+        </div>
       </section>
 
-      <section id="dungeonScreen" class="screen page-screen" aria-label="挑战封面">
-        <div class="status-row" aria-hidden="true">
-          <span>9:41</span>
-          <span>●●●</span>
-        </div>
+      <section id="collectionScreen" class="screen page-screen" aria-label="灵魂图鉴">
         <header class="page-header">
-          <button class="icon-button" type="button" data-screen="assessmentScreen">‹</button>
+          <button class="icon-button" type="button" data-screen="homeScreen" aria-label="返回首页">‹</button>
           <div>
-            <p>STEP 3</p>
-            <h2>反着来任务卡</h2>
+            <p>COLLECTION</p>
+            <h2>灵魂动物图鉴</h2>
           </div>
         </header>
 
-        <div id="loadingPanel" class="loading-panel" aria-live="polite">
-          <span></span>
-          <strong>正在盖章生成任务卡</strong>
-          <p>匹配今日 Boss、任务动作和风险等级。</p>
+        <div class="collection-summary">
+          <strong id="collectionProgress">0 / 12</strong>
+          <span>已解锁卡片会保存在本机浏览器里</span>
         </div>
 
-        <article id="dungeonCard" class="dungeon-card task-card-stage">
-          <span class="task-tape" aria-hidden="true"></span>
-          <span class="task-dot dot-a" aria-hidden="true"></span>
-          <span class="task-dot dot-b" aria-hidden="true"></span>
-          <span class="warning-mark mark-a" aria-hidden="true">!</span>
-          <span class="warning-mark mark-b" aria-hidden="true">!</span>
+        <div id="collectionGrid" class="collection-grid"></div>
 
-          <div class="task-card-paper">
-            <div class="task-card-topline">
-              <strong>CHALLENGE CARD</strong>
-              <span id="taskCode">ASK-01</span>
-            </div>
-            <section class="task-card-block boss-block">
-              <span>今日 Boss</span>
-              <h3 id="bossName">假装随便</h3>
-            </section>
-            <section class="task-card-block mission-block">
-              <div>
-                <span>你的任务</span>
-                <em id="taskEstimate">预计 3 分钟</em>
-              </div>
-              <p id="dungeonGoal">把一个小需求具体说出口。</p>
-            </section>
-            <div class="task-meter">
-              <div>
-                <span>Boss 血量</span>
-                <strong id="taskRisk">低风险</strong>
-              </div>
-              <div class="boss-meter"><i id="bossMeter"></i></div>
-            </div>
-            <div class="task-meta-row">
-              <span id="taskRbti">今日 RBTI: ASK</span>
-              <span id="taskIntensity">来点狠的</span>
-            </div>
-            <div id="dungeonTags" class="tag-row task-tags"></div>
-          </div>
-
-          <div class="task-mascot" aria-hidden="true">
-            <span class="mascot-face">
-              <i></i>
-              <b></b>
-            </span>
-            <span class="mascot-arm arm-left"></span>
-            <span class="mascot-arm arm-right"></span>
-            <span class="mascot-leg leg-left"></span>
-            <span class="mascot-leg leg-right"></span>
-            <span class="mascot-flag"></span>
-          </div>
-        </article>
-
-        <button id="startLevelButton" class="big-cta sticky-cta" type="button">开始挑战</button>
-      </section>
-
-      <section id="levelScreen" class="screen page-screen" aria-label="闯关">
-        <div class="status-row" aria-hidden="true">
-          <span>9:41</span>
-          <span>●●●</span>
+        <div class="action-stack">
+          <button id="collectionStartButton" class="primary-button" type="button">继续抽卡</button>
         </div>
-        <header class="page-header compact-header">
-          <button class="icon-button" type="button" data-screen="dungeonScreen">‹</button>
-          <div>
-            <p id="runMbti">INFP</p>
-            <h2 id="runState">不想社交</h2>
-          </div>
-          <span id="runIntensity" class="pill">来点狠的</span>
-        </header>
-        <div id="levelArea" class="level-area" aria-live="polite"></div>
-      </section>
-
-      <section id="resultScreen" class="screen page-screen result-screen" aria-label="RBTI 结果">
-        <div class="status-row" aria-hidden="true">
-          <span>9:41</span>
-          <span>●●●</span>
-        </div>
-        <div id="reportEmpty" class="is-hidden"></div>
-        <article id="reportCard" class="report-card is-hidden">
-          <p>YOUR RBTI</p>
-          <img id="reportTypeImage" class="report-type-image" src="./assets/result-types/ASK.jpg" alt="RBTI 人格结果图" />
-          <div class="type-card">
-            <span id="resultCode">ASK</span>
-            <strong id="resultName">都可以本人</strong>
-            <em id="resultLine">嘴上说随便，心里已经写好需求文档。</em>
-          </div>
-          <h2 id="reportTitle">你击败了假装随便</h2>
-          <p id="reportSummary">你完成了一次主动表达需求的小练习。</p>
-          <p id="basisLine" class="basis-line">依据：8 题极速测评定位到“需求表达”卡点。</p>
-          <div class="report-base-reading">
-            <span>底色 × 今日状态</span>
-            <p id="reportBaseReading">INFP 的底色会让这个结果更像一次温柔退让，而不是单纯没主见。</p>
-          </div>
-          <div class="report-stats">
-            <div>
-              <span>你容易这样</span>
-              <strong id="reportWeakness">把需求藏进“都可以”</strong>
-            </div>
-            <div>
-              <span>这次练习</span>
-              <strong id="reportSkill">主动说出一个小需求</strong>
-            </div>
-            <div>
-              <span>明天试试</span>
-              <strong id="reportNext">向朋友明确提出一个请求</strong>
-            </div>
-          </div>
-          <p id="resultRoast" class="result-roast">今日嘴替：你不是没有需求，你只是把需求藏得太有礼貌。</p>
-          <blockquote id="shareLine">我的今日 RBTI：ASK 都可以本人。</blockquote>
-          <div class="result-actions">
-            <button type="button" class="ghost-button" data-screen="homeScreen">回首页</button>
-            <button id="rerunButton" class="big-cta" type="button">再来一局</button>
-          </div>
-        </article>
       </section>
     </main>
 
-    <aside class="desktop-info" aria-label="产品介绍与扫码访问">
-      <div class="desktop-title-block">
-        <div class="desktop-kicker">DOUYIN INTERACTIVE SPACE</div>
-        <h2>今天别做自己</h2>
-        <p class="desktop-lead">8 题测出今天的你，马上生成一个 3 分钟反着来挑战。</p>
-      </div>
-      <div class="desktop-task-note">
-        <div class="desktop-note-top">
-          <strong>CHALLENGE CARD</strong>
-          <span>RBTI-08</span>
-        </div>
-        <h3>把今天的惯性，变成一张任务卡。</h3>
-        <p>不再只是测出“你是谁”，而是给你一个当场能试的小动作。</p>
-      </div>
-      <div class="desktop-tags" aria-label="体验关键词">
-        <span>8 题极速测</span>
-        <span>今日 RBTI</span>
-        <span>反着来挑战</span>
-        <span>结果卡分享</span>
-      </div>
-      <div class="desktop-steps-panel" aria-label="体验步骤">
-        <article>
-          <span>1</span>
-          <div>
-            <strong>测今天</strong>
-            <p>先抓住你今天最像哪一种人。</p>
-          </div>
-        </article>
-        <article>
-          <span>2</span>
-          <div>
-            <strong>接任务</strong>
-            <p>把结果变成一张反着来任务卡。</p>
-          </div>
-        </article>
-        <article>
-          <span>3</span>
-          <div>
-            <strong>出结果</strong>
-            <p>生成一张能直接分享的今日嘴替。</p>
-          </div>
-        </article>
-      </div>
-      <div class="desktop-qr-grid">
-        <article class="desktop-qr-card desktop-qr-card-primary">
-          <div>
-            <div class="desktop-qr-heading">
-              <strong>扫码试玩</strong>
-              <a href="https://rbti.neovurge.com/" target="_blank" rel="noreferrer">rbti.neovurge.com</a>
-            </div>
-            <p>手机打开完整互动流程。</p>
-          </div>
-          <img src="./assets/desktop-qr.png" alt="扫码访问今天别做自己" />
-        </article>
-        <article class="desktop-qr-card desktop-qr-card-wechat">
-          <div>
-            <strong>作者微信</strong>
-            <p>交流产品、反馈体验。</p>
-          </div>
-          <img src="./assets/author-wechat.jpg" alt="作者微信二维码" />
-        </article>
-      </div>
-    </aside>
-    </div>
-
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "./vendor/three/build/three.module.js",
-          "three/addons/": "./vendor/three/examples/jsm/"
-        }
-      }
-    </script>
-    <script type="module" src="./home-3d.js"></script>
+    <script src="./sati-data.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>
