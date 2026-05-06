@@ -218,7 +218,7 @@ function renderResult() {
   const names = latestResult.animals.map((animal) => animal.name).join(" + ");
   resultHeading.textContent = isMixed ? `${names} 的混合灵魂` : `你是 ${latestResult.animals[0].name}`;
   resultSubline.textContent = isMixed
-    ? `出现并列最高分，系统从 ${latestResult.winners.length} 个并列结果里稳定选出 2 张展示。`
+    ? "并列最高分，已为你展示双卡。"
     : `最高分 ${latestResult.maxScore} 分，已解锁 1 张灵魂动物卡。`;
   resultCards.innerHTML = latestResult.animals.map((animal, index) => renderAnimalCard(animal, index, latestResult.animals.length)).join("");
   renderPartOne(latestResult.animals);
