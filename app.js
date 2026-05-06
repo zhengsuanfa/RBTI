@@ -22,7 +22,6 @@ const questionTitle = $("questionTitle");
 const optionList = $("optionList");
 const answerHint = $("answerHint");
 const resultHeading = $("resultHeading");
-const resultSubline = $("resultSubline");
 const resultCards = $("resultCards");
 const partOne = $("partOne");
 const partTwo = $("partTwo");
@@ -217,9 +216,6 @@ function renderResult() {
   const isMixed = latestResult.displayIds.length > 1;
   const names = latestResult.animals.map((animal) => animal.name).join(" + ");
   resultHeading.textContent = isMixed ? `${names} 的混合灵魂` : `你是 ${latestResult.animals[0].name}`;
-  resultSubline.textContent = isMixed
-    ? "并列最高分，已为你展示双卡。"
-    : `最高分 ${latestResult.maxScore} 分，已解锁 1 张灵魂动物卡。`;
   resultCards.innerHTML = latestResult.animals.map((animal, index) => renderAnimalCard(animal, index, latestResult.animals.length)).join("");
   renderPartOne(latestResult.animals);
   renderPartTwo(latestResult.animals);

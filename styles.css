@@ -442,18 +442,7 @@ em {
 
 .result-stage {
   display: grid;
-  gap: 12px;
-}
-
-.result-subline {
-  margin: 0;
-  padding: 12px 14px;
-  color: #394235;
-  background: rgba(255, 255, 255, 0.74);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  line-height: 1.55;
-  font-weight: 850;
+  gap: 0;
 }
 
 .result-cards {
